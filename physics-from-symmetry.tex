@@ -1,0 +1,142 @@
+% Preamble ==================================================================
+\documentclass[11pt]{article}
+\usepackage{geometry}
+\geometry{verbose,tmargin=2.5cm,bottom= 1.5cm,lmargin=2.5cm,rmargin=2.5cm}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathtools}
+
+\usepackage{amsthm} % theorem
+
+\numberwithin{equation}{section}
+
+\usepackage{titlesec,dsfont}
+
+%Format section heading style
+\usepackage{sectsty}
+\sectionfont{\sffamily\bfseries\large}
+\subsectionfont{\sffamily\normalsize\slshape}
+\subsubsectionfont{\sffamily\small\itshape}
+\paragraphfont{\sffamily\small\textbf}
+
+
+%Put period after section number
+\makeatletter
+\def\@seccntformat#1{\csname the#1\endcsname.\quad}
+\makeatother
+
+%Bibliography
+\usepackage[round]{natbib}
+\bibliographystyle{genetics}
+
+%Format captions
+\usepackage[ labelsep=period, justification=raggedright, margin=10pt,font={small},labelfont={small,normal,bf,sf}]{caption}
+
+\setlength{\parskip}{0ex} %No space between paragraphs.
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\newcommand\indep{\protect\mathpalette{\protect\independenT}{\perp}}
+\newcommand{\nindep}{\not\!\perp\!\!\!\perp}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+
+%PUT ME LAST--------------------------------------------------
+\usepackage[colorlinks=true
+,urlcolor=blue
+,anchorcolor=blue
+,citecolor=blue
+,filecolor=blue
+,linkcolor=black
+,menucolor=blue
+,linktocpage=true
+,pdfproducer=medialab
+,pdfa=true
+]{hyperref}
+
+\makeatother %Put this last of all
+
+% Symbol definitions
+\newcommand{\defeq}{\coloneqq}
+\renewcommand{\d}[1]{\ensuremath{\operatorname{d}\!{#1}}}
+
+% Make theorems bold
+\makeatletter
+\def\th@plain{%
+  \thm@notefont{}% same as heading font
+  \itshape % body font
+}
+\def\th@definition{%
+  \thm@notefont{}% same as heading font
+  \normalfont % body font
+}
+\makeatother
+
+% Theorem definitions
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{defn}{Definition}[section]
+\newtheorem{cor}{Corollary}[section]
+\newtheorem{prop}{Property}[section]
+\newtheorem{rle}{Rule}[section]
+\newtheorem{lma}{Lemma}[section]
+
+%Preamble end--------------------------------------------------
+
+
+\begin{document}
+
+
+
+\begin{flushleft}
+\textbf{\Large Notes on Physics from Symmetry}
+\end{flushleft}
+
+\begin{flushleft}
+Author: Juvid Aryaman
+
+Last compiled: \today
+\end{flushleft}
+
+\noindent This document contains my personal notes on Jakob Schwichtenberg's Physics from Symmetry \citep{Schwichtenberg15}.
+
+
+\section{Special relativity}
+
+In special relativity, \textbf{inertial frames of reference} are coordinate systems moving with constant velocity relative to each other. Special relativity has two basic postulates:
+\begin{enumerate}
+\item \textbf{The principal of relativity}: The laws of physics are the same in all inertial frames of reference.
+\item \textbf{The invariance of the speed of light}: The velocity of light has the same value $c$ in all inertial frames of reference.
+\end{enumerate}
+
+\begin{thm}[Invariant of special relativity]
+Consider two events $A$ and $B$ in an observer $O$'s frame of reference. Let the time interval measured by $O$ between the two events be $(\Delta t)$, and the three spatial intervals be $(\Delta x)$, $(\Delta y)$, $(\Delta z)$. Then, the quantity
+\begin{equation}
+(\Delta s)^2 \defeq (\Delta c t)^2 - (\Delta x)^2 - (\Delta y)^2 - (\Delta y)^2
+\end{equation}
+is \textbf{invariant} between all frames of reference. I.e.
+\begin{equation}
+(\Delta s') = (\Delta s)
+\end{equation}
+for any inertial frame of reference $O'$.
+\end{thm}
+
+\begin{defn}[Proper time] \label{defn:proper-time}
+Proper time, $\tau$, is the time measured by an observer in the special frame of reference where the object in question is at rest. In this frame of reference,
+\begin{equation}
+(\Delta s)^2 = (c \Delta \tau)^2.
+\end{equation}
+In the infinitesimal limit
+\begin{equation}
+(\d s)^2 = (c \d \tau)^2.
+\end{equation}
+\end{defn}
+Physically, Defn.~\ref{defn:proper-time} means that all observers agree on the time interval between events for an observer who travels with the object in question.
+
+
+
+\newpage
+\bibliography{physics-from-symmetry.bib} 
+
+\end{document}
