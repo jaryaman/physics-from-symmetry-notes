@@ -104,14 +104,16 @@ Last compiled: \today
 
 \section{Special relativity}
 
+\subsection{Definitions and postulates}
+
 In special relativity, \textbf{inertial frames of reference} are coordinate systems moving with constant velocity relative to each other. Special relativity has two basic postulates:
 \begin{enumerate}
 \item \textbf{The principal of relativity}: The laws of physics are the same in all inertial frames of reference.
 \item \textbf{The invariance of the speed of light}: The velocity of light has the same value $c$ in all inertial frames of reference.
 \end{enumerate}
 
-\begin{thm}[Invariant of special relativity]
-Consider two events $A$ and $B$ in an observer $O$'s frame of reference. Let the time interval measured by $O$ between the two events be $(\Delta t)$, and the three spatial intervals be $(\Delta x)$, $(\Delta y)$, $(\Delta z)$. Then, the quantity
+\begin{thm}[Invariant of special relativity]\label{thm:invariant-sr}
+Consider two events $A$ and $B$ in an inertial observer $O$'s frame of reference. Let the time interval measured by $O$ between the two events be $(\Delta t)$, and the three spatial intervals be $(\Delta x)$, $(\Delta y)$, $(\Delta z)$. Then, the quantity
 \begin{equation}
 (\Delta s)^2 \defeq (\Delta c t)^2 - (\Delta x)^2 - (\Delta y)^2 - (\Delta y)^2
 \end{equation}
@@ -121,6 +123,7 @@ is \textbf{invariant} between all frames of reference. I.e.
 \end{equation}
 for any inertial frame of reference $O'$.
 \end{thm}
+\noindent Theorem \ref{thm:invariant-sr} follows directly from the invariance of the speed of light.
 
 \begin{defn}[Proper time] \label{defn:proper-time}
 Proper time, $\tau$, is the time measured by an observer in the special frame of reference where the object in question is at rest. In this frame of reference,
@@ -132,9 +135,22 @@ In the infinitesimal limit
 (\d s)^2 = (c \d \tau)^2.
 \end{equation}
 \end{defn}
-Physically, Defn.~\ref{defn:proper-time} means that all observers agree on the time interval between events for an observer who travels with the object in question.
+Physically, Defn.~\ref{defn:proper-time} means that all observers agree on the time interval between events for an observer who travels with the object in question. However, different observers \textbf{do not} in general agree on the time interval between events generally: $(\Delta t) \neq (\Delta t')$ -- this is called \textbf{time dilation}. 
 
-
+\subsection{$c$ is an upper speed limit}
+All observers agree on the value of $(\d s)^2=(c \d \tau)^2$. Furthermore, we commonly assume that there exists a minimal proper time of $\tau = 0$ for two events if $\Delta s^2 = 0$. We can therefore write that when $\tau = 0$
+\begin{equation}
+c^2 = \frac{(\d x)^2 + (\d y)^2 + (\d z)^2}{(\d t)^2}
+\end{equation}
+between two events with an infinitesimal distance. We can equate the right-hand side with a squared velocity, and hence
+\begin{equation}
+\tau = 0 \implies c^2 = v^2\ 
+\end{equation}
+so
+\begin{equation}
+(\d s)^2 \geq 0 \implies c^2 \geq v^2
+\end{equation}
+for \textbf{any} pair of events (which are causally connected, although how this follows is not immediately clear to me right now). 
 
 \newpage
 \bibliography{physics-from-symmetry.bib} 
