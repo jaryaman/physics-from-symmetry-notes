@@ -9,7 +9,8 @@
 \usepackage{enumitem}
 \usepackage{mathtools}
 
-\usepackage{tensor} % covariant and contravariant
+\usepackage{tensor}
+\usepackage{cancel}
 
 \usepackage{amsthm} % theorem
 
@@ -107,7 +108,7 @@ Last compiled: \today
 
 \section{Special relativity}
 
-\subsection{Definitions and postulates}
+\subsection{Definitions and postulates} \label{sec:postualtes-sr}
 
 In special relativity, \textbf{inertial frames of reference} are coordinate systems moving with constant velocity relative to each other. Special relativity has two basic postulates:
 \begin{enumerate}
@@ -155,7 +156,7 @@ so
 \end{equation}
 for \textbf{any} pair of events (which are causally connected, although how this follows is not immediately clear to me right now). 
 
-\subsection{Minkowski Notation}
+\subsection{Tensor notation}
 
 \begin{defn}[Four-vector (contravariant)]
 A position four-\textbf{vector} is defined as
@@ -171,7 +172,7 @@ The Minkowski metric is defined as
 \end{defn}
 \noindent We define $\eta^{\mu \nu}$ through the relation
 \begin{equation}
-\eta^{\mu \nu} \eta_{\nu \sigma} = \delta^\mu_{\;\sigma}
+\eta^{\mu \nu} \eta_{\nu \sigma} = \tensor{\delta}{^\mu_\sigma}
 \end{equation}
 where we have appled the \textbf{Einstein summation convention}, where a repeated Greek index implies a summation from 0 to 3 (where the zeroth index is time), and a repeated Roman index is summed from 1 to 3. Hence, for a matrix multiplication between two 3$\times$3 matricies $A$ and $B$, $(AB)_{ij} = A_{ik}B_{kj}$, and $(A^T)_{ij}=A_{ji}$.
 
@@ -193,13 +194,12 @@ x \cdot y \defeq x^\mu y^\nu \eta_{\mu \nu} = x_\mu y_\nu \eta^{\mu \nu} = x^\mu
 \end{equation}
 due to the symmetry of the metric: $\eta_{\mu \nu} = \eta_{\nu \mu}$.
 \end{defn}
-In general, a $(q,r)$ tensor field can have $q$ upper indicies and $r$ lower indicies, defined through the following transformation law:
-\begin{defn}[$(q,r)$ tensor]
-A $(q,r)$ tensor is defined through the transformation law
+
+\paragraph{Ordering (spacing) of indicies} In order to be able to freely raise/lower indicies (without repeatedly writing the metric tensor), we can impose an ordering upon indicies of tensor fields -- which we can represent typographically with spacing between tensor indicies. A metric $g_{ij}$ (or $g^{ij}$) has the effect of lowering (or raising) a repeated index. For example,
 \begin{equation}
-T'^{i'_1 i'_2 ... i'_q}_{j'_1 j'_2 ... j'_r}(x') = T^{i_1 i_2 ... i_q}_{j_1 j_2 ... j_r}(x) (M^{i'_1}_{i_1}...M^{i'_q}_{i_q}) (M^{j'_1}_{j_1}...M^{j'_r}_{j_r}).
+g_{iq} \tensor{T}{^{abcd}_{efgh}^{ijkl}_{mnop}}  = \tensor{T}{^{abcd}_{efghq}^{jkl}_{mnop}}.
 \end{equation}
-\end{defn}
+(Proof of this, I imagine, requires background in differential geometry?)
 
 \subsection{Lorentz transformations}
 From the invariant of SR (Theorem~\ref{thm:invariant-sr}), we have
@@ -208,13 +208,34 @@ From the invariant of SR (Theorem~\ref{thm:invariant-sr}), we have
 \end{equation}
 for all reference frames. We denote $\Lambda$ as a (1,1) tensor field, which transforms a four-vector from one reference frame to another:
 \begin{equation}
-\d x'^\mu = \Lambda^\mu_{\;\nu} \d x ^\nu
+\d x'^\mu = \Lambda^\mu{}_{\nu} \d x ^\nu
 \end{equation}
 which leaves the $\d s^2$ invariant, i.e. $\d s'^2 = ds^2$. It follows that 
 \begin{align}
-\eta_{\mu \nu} &= \Lambda^\sigma_{\;\mu} \Lambda^\delta_{\;\nu} \eta_{\sigma \delta}\\
-\eta &= \Lambda^T \eta \Lambda \nonumber
+\eta_{\mu \nu} &= \tensor{\Lambda}{^\sigma_\mu} \tensor{\Lambda}{^\delta_\nu} \eta_{\sigma \delta} \label{eq:lorentz-tfm-characteristic}\\
+\eta &= \Lambda^T \eta \Lambda. \nonumber
 \end{align}
+The physical meaning of Eq.\eqref{eq:lorentz-tfm-characteristic} is that Lorentz transformations leave the scalar product of Minkowski spacetime invariant: i.e. changes between frames of reference that respect the two postualtes of special relativity (Section~\ref{sec:postualtes-sr}). Conservation of the scalar product is analogous to rigid rotation ($O$) in Euclidean space ($a \cdot b = a' \cdot b' = a^T O^T O b \implies O^T 1 O = 1$), which preserves orientation ($\det(\Lambda)=1$).
+
+
+Note that $\tensor{\Lambda}{^\mu_\nu} \neq \tensor{\Lambda}{_\nu^\mu}$. Beginning with Eq.\eqref{eq:lorentz-tfm-characteristic},
+\begin{align*}
+\tensor{\Lambda}{^\mu_\rho} \tensor{\Lambda}{^\nu_\sigma} \eta_{\mu \nu} &= \eta_{\rho \sigma}
+\end{align*}
+we can raise one index, and lower one index, of $\tensor{\Lambda}{^\nu_\sigma}$
+\begin{align}
+\tensor{\Lambda}{^\mu_\rho} \eta_{\mu \nu} \tensor{\Lambda}{^\nu_\sigma} \eta_{\nu \mu} \eta^{\sigma \lambda}  &= \eta_{\rho \sigma} \eta_{\nu \mu} \eta^{\sigma \lambda} \nonumber \\
+\tensor{\Lambda}{^\mu_\rho} \tensor{\Lambda}{_\mu^\lambda} \cancel{\eta_{\mu \nu}} &=  \cancel{\eta_{\mu \nu}} \tensor{\delta}{_\rho^\lambda} \nonumber \\
+\tensor{\Lambda}{^\mu_\rho} \tensor{\Lambda}{_\mu^\lambda} &= \tensor{\delta}{_\rho^\lambda}
+\end{align}
+so we see that $\tensor{\Lambda}{_\nu^\mu}$ is the inverse of $\tensor{\Lambda}{^\mu_\nu}$.
+
+\section{Invariance, symmetry, and covariance}
+We call a quantity \textbf{invariant} if it does not change under transformations. E.g. if we transform $A,B,C,... \rightarrow A',B',C',...$ and we have
+\begin{equation}
+F(A',B',C',...) = F(A,B,C,...)
+\end{equation}
+then we say $F$ is invariant under this transformation. \textbf{Symmetry} is defined as invariance under a transformation (or class of transformations). An equation is covariant if it takes the same form when objects in it are transformed. \textit{All physical laws must be covariant under Lorentz transformations.}
 
 \newpage
 \bibliography{physics-from-symmetry.bib} 
