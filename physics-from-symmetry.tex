@@ -156,7 +156,7 @@ so
 \end{equation}
 for \textbf{any} pair of events (which are causally connected, although how this follows is not immediately clear to me right now). 
 
-\subsection{Tensor notation}
+\subsection{Tensor notation and Minkowski spacetime}
 
 \begin{defn}[Four-vector (contravariant)]
 A position four-\textbf{vector} is defined as
@@ -169,6 +169,7 @@ The Minkowski metric is defined as
 \begin{equation}
 \eta_{\mu \nu} = \diag(1,-1,-1,-1).
 \end{equation}
+$\eta$ is used to compute distances and lengths in Minkowski space.
 \end{defn}
 \noindent We define $\eta^{\mu \nu}$ through the relation
 \begin{equation}
@@ -215,7 +216,7 @@ which leaves the $\d s^2$ invariant, i.e. $\d s'^2 = ds^2$. It follows that
 \eta_{\mu \nu} &= \tensor{\Lambda}{^\sigma_\mu} \tensor{\Lambda}{^\delta_\nu} \eta_{\sigma \delta} \label{eq:lorentz-tfm-characteristic}\\
 \eta &= \Lambda^T \eta \Lambda. \nonumber
 \end{align}
-The physical meaning of Eq.\eqref{eq:lorentz-tfm-characteristic} is that Lorentz transformations leave the scalar product of Minkowski spacetime invariant: i.e. changes between frames of reference that respect the two postualtes of special relativity (Section~\ref{sec:postualtes-sr}). Conservation of the scalar product is analogous to rigid rotation ($O$) in Euclidean space ($a \cdot b = a' \cdot b' = a^T O^T O b \implies O^T 1 O = 1$), which preserves orientation ($\det(\Lambda)=1$).
+The physical meaning of Eq.\eqref{eq:lorentz-tfm-characteristic} is that Lorentz transformations leave the scalar product of Minkowski spacetime invariant: i.e. changes between frames of reference that respect the two postualtes of special relativity (Section~\ref{sec:postualtes-sr}). Conservation of the scalar product is analogous to rigid rotation ($O$) in Euclidean space ($a \cdot b = a' \cdot b' = a^T O^T O b \implies O^T I O = I$), which preserves orientation ($\det(\Lambda)=1$).
 
 
 Note that $\tensor{\Lambda}{^\mu_\nu} \neq \tensor{\Lambda}{_\nu^\mu}$. Beginning with Eq.\eqref{eq:lorentz-tfm-characteristic},
@@ -230,12 +231,58 @@ we can raise one index, and lower one index, of $\tensor{\Lambda}{^\nu_\sigma}$
 \end{align}
 so we see that $\tensor{\Lambda}{_\nu^\mu}$ is the inverse of $\tensor{\Lambda}{^\mu_\nu}$.
 
-\section{Invariance, symmetry, and covariance}
-We call a quantity \textbf{invariant} if it does not change under transformations. E.g. if we transform $A,B,C,... \rightarrow A',B',C',...$ and we have
+
+\section{Lie group theory}
+\subsection{Invariance, symmetry, and covariance}
+We call a quantity \textbf{invariant} if it does not change under particular transformations. E.g. if we transform $A,B,C,... \rightarrow A',B',C',...$ and we have
 \begin{equation}
 F(A',B',C',...) = F(A,B,C,...)
 \end{equation}
-then we say $F$ is invariant under this transformation. \textbf{Symmetry} is defined as invariance under a transformation (or class of transformations). An equation is covariant if it takes the same form when objects in it are transformed. \textit{All physical laws must be covariant under Lorentz transformations.}
+then we say $F$ is invariant under this transformation. \textbf{Symmetry} is defined as invariance under a transformation (or class of transformations). An equation is covariant if it takes the same form when objects in it are transformed. \textit{All physical laws must be covariant under Lorentz transformations.} 
+
+Group theory describes the properties of particular sets of transformations: the invariances under such groups allows us to mathematically describe symmetry. For example, the set of rotations about the origin of a square by $n\pi/2$ form a \textbf{discrete group}, and leave the set of points which constitute the square invariant under the transformation. The set of rotations about the origin of a circle form a \textbf{continuous group}. We can use group theory to work with \textit{all} kinds of symmetries: symmetries which operate on vectors, equations, ...
+
+\subsection{Groups}
+\begin{defn}[Group axioms]
+A group $(G, \circ)$ is a set $G$, together with a binary operation $\circ$ defined on $G$, that satisfies the following axioms
+\begin{itemize}
+\item Closure: For all $g_1, g_2 \in G$, $g_1 \circ g_2 \in G$
+\item Identity element: There exists an identity element $e \in G$ such that for all $g \in G$, $g \circ e = g = e \circ g$
+\item Inverse element: For each $g \in G$, there exists an inverse element $g^{-1} \in G$ such that $g \circ g^{-1} = e = g^{-1}g$.
+\item Associativity: For all $g_1, g_2, g_3 \in G$, $g_1 \circ (g_2 \circ g_3) = (g_1 \circ g_2) \circ g_3$
+\end{itemize}
+\end{defn}
+
+The set of all transformations that leave a given object invariant is called a \textbf{symmetry group}. For Minkowski spacetime, the object that is left invariant is the Minkowski metric, and the corresponding symmetry group is called the \textbf{Poincar\'{e} group}. Notice that the transformations which constitute a group are defined entirely independently from the object on which the transformations act.
+
+\subsubsection{Rotations in two dimensions and $SO(2)$}
+Consider the 2D rotation matrices 
+\begin{equation}
+R_\theta = \begin{pmatrix}
+\cos(\theta)& -\sin(\theta)\\
+\sin(\theta)& \cos(\theta)
+\end{pmatrix}
+\end{equation}
+and the two reflection matrices
+\begin{equation}
+P_x = \begin{pmatrix}
+-1& 0\\
+0& 1
+\end{pmatrix} \qquad 
+P_y = \begin{pmatrix}
+1& 0\\
+0& -1
+\end{pmatrix}.
+\end{equation}
+These matrices satisfy the group axioms. We can uncover this group from a symmetry perspective. The above transformations leave the length of a vector unchanged, i.e.
+\begin{equation}
+a.a = a'.a'.
+\end{equation}
+Letting the transformation be represented by $a' = Oa$, it follows that all members of the group must satisfy
+\begin{equation}
+O^T O = I.
+\end{equation}
+This condition defines the group $O(2)$, which is the group of all \textbf{orthogonal} 2$\times$2 matrices. It follows that $\det(O)=\pm 1$ -- i.e. the transformations are area-preserving. The subgroup with $\det(O)=1$ is called $SO(2)$, which corresponds to rigid rotations preserving the orientation of the system -- ``S'' denoting \textbf{special}. 
 
 \newpage
 \bibliography{physics-from-symmetry.bib} 
