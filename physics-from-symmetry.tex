@@ -11,6 +11,7 @@
 
 \usepackage{tensor}
 \usepackage{cancel}
+\usepackage{wasysym}
 
 \usepackage{amsthm} % theorem
 
@@ -256,12 +257,12 @@ A group $(G, \circ)$ is a set $G$, together with a binary operation $\circ$ defi
 The set of all transformations that leave a given object invariant is called a \textbf{symmetry group}. For Minkowski spacetime, the object that is left invariant is the Minkowski metric, and the corresponding symmetry group is called the \textbf{Poincar\'{e} group}. Notice that the transformations which constitute a group are defined entirely independently from the object on which the transformations act.
 
 \subsubsection{Rotations in two dimensions and $SO(2)$}
-Consider the 2D rotation matrices 
+Consider the 2D rotation matrix 
 \begin{equation}
 R_\theta = \begin{pmatrix}
 \cos(\theta)& -\sin(\theta)\\
 \sin(\theta)& \cos(\theta)
-\end{pmatrix}
+\end{pmatrix} \label{eq:2d-rotation-matrix}
 \end{equation}
 and the two reflection matrices
 \begin{equation}
@@ -283,6 +284,55 @@ Letting the transformation be represented by $a' = Oa$, it follows that all memb
 O^T O = I.
 \end{equation}
 This condition defines the group $O(2)$, which is the group of all \textbf{orthogonal} 2$\times$2 matrices. It follows that $\det(O)=\pm 1$ -- i.e. the transformations are area-preserving. The subgroup with $\det(O)=1$ is called $SO(2)$, which corresponds to rigid rotations preserving the orientation of the system -- ``S'' denoting \textbf{special}. 
+
+\subsubsection{Rotations with unit complex numbers and $U(1)$}
+A unit complex number is a complex number $z$ which satisfies $|z|^2=z^*z=1$. The group $U(1)$ is the set of unit complex numbers, together with ordinary complex number multiplication. The $U$ stands for `\textbf{unitary}`, which generally stands for the condition 
+\begin{equation}
+U^\dagger U=1,
+\end{equation} 
+where $U^\dagger = U^{T*}$ is the \textbf{Hermitian conjugate} of $U$. For scalars, the Hermitian conjugate is equivalent to the complex conjugate. Note that a unit complex number can also be denoted as 
+\begin{equation}
+R_\theta = e^{i\theta} = \cos(\theta) + i \sin(\theta)
+\end{equation}
+which makes the interpretation of $U(1)$ as rotations on the unit complex numbers evident.
+
+We can connect this description of rotations ($U(1)$) to the previous ($SO(2)$) by defining 
+\begin{equation}
+1 = \begin{pmatrix}
+1 & 0\\
+0 & 1
+\end{pmatrix}\qquad,\qquad
+i = \begin{pmatrix}
+0 & -1\\
+1 & 0
+\end{pmatrix}. \label{eq:map-complex-rot-to-2d-vectors}
+\end{equation}
+For an arbitrary unit complex number $z = a + ib$, let
+\begin{equation}
+f(z) = a \begin{pmatrix}
+1 & 0\\
+0 & 1
+\end{pmatrix} + b \begin{pmatrix}
+0 & -1\\
+1 & 0
+\end{pmatrix} = \begin{pmatrix}
+a & -b\\
+b & a
+\end{pmatrix}. \label{eq:isomorphism-so2-u1}
+\end{equation}
+Since $z = R_\theta = \cos(\theta) + i \sin(\theta)$, we can plug in the real and imaginary components of $z$ into Eq.\eqref{eq:isomorphism-so2-u1} to arrive at Eq.\eqref{eq:2d-rotation-matrix}. We then have $z' = R_\theta z$, to perform rotations. There therefore exists an \textbf{isomorphism} between $SO(2)$ and $U(1)$:
+\begin{defn}[Group isomorphism]
+Given two groups $(G, *)$, $(H, \astrosun)$, a group isomorphism is a bijective function $f: G \rightarrow H$ such that
+\begin{equation}
+f(u * v) = f(u) \astrosun f(v) \ \forall\ u, v \in G.
+\end{equation}
+which is written as
+\begin{equation}
+(G, *) \cong (H, \astrosun).
+\end{equation}
+\end{defn}
+\noindent $f(z)$ in Eq.\eqref{eq:isomorphism-so2-u1} is therefore a group isomorphism between $U(1)$ and $SO(2)$.
+
 
 \newpage
 \bibliography{physics-from-symmetry.bib} 
