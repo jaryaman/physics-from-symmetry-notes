@@ -290,7 +290,7 @@ A unit complex number is a complex number $z$ which satisfies $|z|^2=z^*z=1$. Th
 \begin{equation}
 U^\dagger U=1,
 \end{equation} 
-where $U^\dagger = U^{T*}$ is the \textbf{Hermitian conjugate} of $U$. For scalars, the Hermitian conjugate is equivalent to the complex conjugate. Note that a unit complex number can also be denoted as 
+where $U^\dagger = (U^{T})^*$ is the \textbf{Hermitian conjugate} of $U$. For scalars, the Hermitian conjugate is equivalent to the complex conjugate. Note that a unit complex number can also be denoted as 
 \begin{equation}
 R_\theta = e^{i\theta} = \cos(\theta) + i \sin(\theta)
 \end{equation}
@@ -331,8 +331,31 @@ which is written as
 (G, *) \cong (H, \astrosun).
 \end{equation}
 \end{defn}
-\noindent $f(z)$ in Eq.\eqref{eq:isomorphism-so2-u1} is therefore a group isomorphism between $U(1)$ and $SO(2)$.
+\noindent $f(z)$ in Eq.\eqref{eq:isomorphism-so2-u1} is therefore a group isomorphism between $U(1)$ and $SO(2)$. This realization has an analogue in three dimensions, which will reveal something fundamental about nature.
 
+\subsubsection{Rotations in three dimensions}
+Rotations in three dimensions can be described by the following ``basis rotations''
+\begin{align}
+R_x &= \begin{pmatrix}
+1 & 0 & 0 \\
+0 & \cos(\theta) & -\sin(\theta) \\
+0 & \sin(\theta) & \cos(\theta) \\
+\end{pmatrix} \qquad 
+R_y = \begin{pmatrix}
+\cos(\theta) & 0 & \sin(\theta) \\
+0 & 1 & 0 \\
+-\sin(\theta) & 0 & \cos(\theta) \\
+\end{pmatrix} \nonumber \\
+R_z &= \begin{pmatrix}
+\cos(\theta) & -\sin(\theta) & 0 \\
+\sin(\theta) & \cos(\theta) & 0 \\
+0 & 0 & 1
+\end{pmatrix}.
+\end{align}
+So, to rotate a vector $v$ around the $z$-axis by $\theta$, we would compute $R_z(\theta) v$. 
+
+\subsubsection{Quaternions}
+To get a second description of rotations in three dimensions, we must generalize complex numbers in higher dimensions. Astonishingly, it turns out that there are no 3-dimensional complex numbers. Instead, we can find 4-dimensional complex numbers called quaternions, which will turn out to be able to describe rotations in 3-dimensions. The fact that quaternions are 4-dimensional will reveal something deep about the universe. We could have anticipated this result, because we will be using unit quaternions, which have 3 degrees of freedom.
 
 \newpage
 \bibliography{physics-from-symmetry.bib} 
