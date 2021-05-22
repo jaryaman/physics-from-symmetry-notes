@@ -357,6 +357,29 @@ So, to rotate a vector $v$ around the $z$-axis by $\theta$, we would compute $R_
 \subsubsection{Quaternions}
 To get a second description of rotations in three dimensions, we must generalize complex numbers in higher dimensions. Astonishingly, it turns out that there are no 3-dimensional complex numbers. Instead, we can find 4-dimensional complex numbers called quaternions, which will turn out to be able to describe rotations in 3-dimensions. The fact that quaternions are 4-dimensional will reveal something deep about the universe. We could have anticipated this result, because we will be using unit quaternions, which have 3 degrees of freedom.
 
+To construct quaternions, we introduce three complex units satisfying the relations
+\begin{align}
+\mathbf{i}^2 = \mathbf{j}^2 = \mathbf{k}^2 - -1 \\
+\mathbf{ijk} = -1 \\
+q = a \mathbf{1} + b\mathbf{i} + c \mathbf{j} + d \mathbf{k}. \label{eq:quaternion-ijk}
+\end{align}
+All other relations can be computed from the above. For example, the relation $\mathbf{ij}=\mathbf{k}$ can be derived by multiplying both sides of Eq.\eqref{eq:quaternion-ijk} by $\mathbf{k}$. Notice that it follows that the \textbf{basic quaternions} \textbf{anticommute} with each other, see Fig.~\ref{fig:quaternion-multiplication}.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.2\columnwidth]{figures/quaternion-multiplication.jpg}  
+\end{center}
+\caption{Quaternion multiplication table, read as row $\times$ column = value. E.g. $\mathbf{ji}=-\mathbf{k}$. In general, the basic quaternions anti-commute.}
+\label{fig:quaternion-multiplication}
+\end{figure}
+
+
+The set of unit quaternions satisfy
+\begin{align}
+q^\dagger q = 1 \\
+\implies a^2 + b^2 + c^2 + d^2 = 1.
+\end{align}
+
 \newpage
 \bibliography{physics-from-symmetry.bib} 
 
