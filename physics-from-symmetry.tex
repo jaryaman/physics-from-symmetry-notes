@@ -331,9 +331,13 @@ which is written as
 (G, *) \cong (H, \astrosun).
 \end{equation}
 \end{defn}
-\noindent $f(z)$ in Eq.\eqref{eq:isomorphism-so2-u1} is therefore a group isomorphism between $U(1)$ and $SO(2)$. This realization has an analogue in three dimensions, which will reveal something fundamental about nature.
+\noindent $f(z)$ in Eq.\eqref{eq:isomorphism-so2-u1} is therefore a group isomorphism between $U(1)$ and $SO(2)$,
+\begin{equation}
+SO(2) \cong U(1). \label{eq:so2-is-isomorphic-u1}
+\end{equation}
+This realization has an analogue in three dimensions, which will reveal something fundamental about nature.
 
-\subsubsection{Rotations in three dimensions}
+\subsubsection{Rotations in three dimensions and $SO(3)$}
 Rotations in three dimensions can be described by the following ``basis rotations''
 \begin{align}
 R_x &= \begin{pmatrix}
@@ -352,9 +356,9 @@ R_z &= \begin{pmatrix}
 0 & 0 & 1
 \end{pmatrix}.
 \end{align}
-So, to rotate a vector $v$ around the $z$-axis by $\theta$, we would compute $R_z(\theta) v$. 
+So, to rotate a vector $v$ around the $z$-axis by $\theta$, we would compute $R_z(\theta) v$. The set of (orientation-preserving) rotation matrices acting on 3-dimensional vectors is called $SO(3)$.
 
-\subsubsection{Quaternions}
+\subsubsection{Quaternions and $SU(2)$}
 To get a second description of rotations in three dimensions, we must generalize complex numbers in higher dimensions. Astonishingly, it turns out that there are no 3-dimensional complex numbers. Instead, we can find 4-dimensional complex numbers called quaternions, which will turn out to be able to describe rotations in 3-dimensions. The fact that quaternions are 4-dimensional will reveal something deep about the universe. We could have anticipated this result, because we will be using unit quaternions, which have 3 degrees of freedom.
 
 To construct quaternions, we introduce three complex units satisfying the relations
@@ -379,6 +383,86 @@ The set of unit quaternions satisfy
 q^\dagger q = 1 \\
 \implies a^2 + b^2 + c^2 + d^2 = 1.
 \end{align}
+As the unit complex numbers formed a group under complex number multiplication, the unit quaternions form a group under quaternion multiplication. There are several possible ways of representing the basic quaternions with 2D matrices, but one way is as follows:
+\begin{align}
+\mathbf{1}&=\begin{pmatrix}
+1&0\\
+0&1
+\end{pmatrix}\qquad,\qquad
+\mathbf{i}=\begin{pmatrix}
+0&1\\
+-1&0
+\end{pmatrix} \nonumber \\
+\mathbf{j}&=\begin{pmatrix}
+0&i\\
+i&0
+\end{pmatrix}\qquad,\qquad
+\mathbf{k}=\begin{pmatrix}
+i&0\\
+0&-i
+\end{pmatrix}. \label{eq:matrix-repn-quaternion}
+\end{align}
+With these matrices, a generic quaternion $q=a\mathbf{1}+b\mathbf{i}+c\mathbf{j}+d\mathbf{k}$ can be written in a matrix representation as
+\begin{equation}
+f(q) = \begin{pmatrix}
+a+di & b + ci\\
+-b + ci & a-di
+\end{pmatrix}. \label{eq:quaternion-matrix-repn}
+\end{equation}
+We also observe that $\det(f(q))=1$, and so we conclude that the unit quaternions are given by the set of matrices with the above form and unit determinant. The unit quaternions, written as 2$\times$2 matrices $U$ therefore fulfil the conditions
+\begin{equation}
+U^\dagger U=1 \qquad \text{and}\ \det(U)=1.
+\end{equation}
+This defines the symmetry group $SU(2)$. 
+
+The map between $SU(2)$ and $SO(3)$ is not as simple as the one we saw between $U(1)$ and $SO(2)$. The mapping of a complex number onto a 2-dimensional vector is easy because a complex number has two degrees of freedom: $v=x+\mathbf{i}y$. But the mapping of a quaternion onto 3-dimensional vector is not so straightforward because a quaternion has four degrees of freedom. We will make the mapping of a 3-dimensional vector $(x,y,z)^T$ onto a quaternion $v$ as
+\begin{equation}
+v \equiv x \mathbf{i} + y \mathbf{j} + z \mathbf{k}.
+\end{equation}
+Using Eq.\eqref{eq:matrix-repn-quaternion}, we see that $\det(v)=x^2+y^2+z^2$. In order to perform transformations which preserve the length of the vector $(x,y,z)$, we must use transformations which preserve determinants. Therefore, the restriction to \textit{unit} quaternions means that we must restrict to matrices with \textit{unit} determinants\footnote{Since $\det(BA)=\det(B)\det(A)$}. Naively, a first guess would be that simply multiplying a vector $v$ by a unit quaternion $u$ induces a rotation on $v$, but this is not the case because the product of $u$ and $v$ may not belong to $\mathbb{R}\mathbf{i}+\mathbb{R}\mathbf{j}+\mathbb{R}\mathbf{k}$. It turns out that the following transformation can describe rotations in 3-dimensions
+\begin{equation}
+v'=qvq^{-1}. \label{eq:su2-binary-multiplication}
+\end{equation}
+
+Let $t$ be a quaternion defining a rotation through $\phi$, where
+\begin{align}
+t &= \cos(\frac{\phi}{2}) + \sin(\frac{\phi}{2})u \label{eq:quaternion-3d-rot} \\
+u &= u_x \mathbf{i} + u_y \mathbf{j} + u_z \mathbf{k} \\
+u^\dagger u &= 1 \implies t^\dagger t = 1.
+\end{align}
+As an example, suppose we wish to rotate the vector $\vec{v}=(1,0,0)^T$ around the $z$-axis by $\phi$. Then using Eq.\eqref{eq:matrix-repn-quaternion}
+\begin{equation}
+\vec{v}=(1,0,0)^T \rightarrow v = 1\mathbf{i} + 0 \mathbf{j} + 0 \mathbf{k} = \begin{pmatrix}
+0 & 1\\
+-1 & 0
+\end{pmatrix}.
+\end{equation}
+From Eq.\eqref{eq:quaternion-3d-rot}, defining $\theta = \phi/2$
+\begin{equation}
+R_z(\theta)=\cos(\theta) \mathbf{1} + \sin(\theta)\mathbf{k} = \begin{pmatrix}
+\cos(\theta) + i \sin(\theta) & 0 \\
+0 & \cos(\theta) - i \sin(\theta)
+\end{pmatrix}.
+\end{equation}
+From Eq.\eqref{eq:su2-binary-multiplication}, the rotated vector $v'$ is
+\begin{equation}
+v' = R_z(\theta) v R_z(\theta)^{-1} = \begin{pmatrix}
+0 & \cos(\phi) + i \sin(\phi) \\
+-\cos(\phi) + i \sin(\phi) & 0
+\end{pmatrix}.
+\end{equation}
+Using the general quaternion matrix representation Eq.\eqref{eq:quaternion-matrix-repn}, we can equate
+\begin{equation}
+v'_x = \cos(\phi), \qquad v'_y = \sin(\phi), \qquad v'_z = 0
+\end{equation}
+as expected.
+
+Inspection of Eq.\eqref{eq:quaternion-3d-rot} reveals that the mapping of unit quaternions onto 3-dimensional rotations is not one-to-one. For example, a rotation by $\phi=\pi$ is equivalent to a rotation by $\phi = 2\pi + \pi = 3\pi$. But,
+\begin{align}
+t_{\phi=\pi} = \sin(\frac{\pi}{2}) u = u \\
+t_{\phi=3\pi} = \sin(\frac{3\pi}{2}) u = -u.
+\end{align}
+Hence, we call $SU(2)$ a \textbf{double-cover} of $SO(3)$, because every element of $SO(3)$ has two corresponding elements in $SU(2)$ [\textbf{TODO: I think}?]. It is therefore always possible to go unambiguously from $SU(2)$ to $SO(3)$, but not vice versa. We will see later that groups which cover other groups are fundamental for quantum spin. 
 
 \newpage
 \bibliography{physics-from-symmetry.bib} 
