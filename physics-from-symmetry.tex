@@ -65,7 +65,10 @@
 % Symbol definitions
 \newcommand{\defeq}{\coloneqq}
 \renewcommand{\d}[1]{\ensuremath{\operatorname{d}\!{#1}}}
+\newcommand{\deriv}[2]{\frac{\ensuremath{\operatorname{d}\!{#1}}}{\ensuremath{\operatorname{d}\!{#2}}}}
+\newcommand{\derivn}[3]{\frac{\ensuremath{\operatorname{d}^{#1}\!{#2}}}{\ensuremath{\operatorname{d}\!{#3}^{#1}}}}
 \DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\tr}{tr}
 
 % Make theorems bold
 \makeatletter
@@ -338,7 +341,12 @@ SO(2) \cong U(1). \label{eq:so2-is-isomorphic-u1}
 This realization has an analogue in three dimensions, which will reveal something fundamental about nature.
 
 \subsubsection{Rotations in three dimensions and $SO(3)$}
-Rotations in three dimensions can be described by the following ``basis rotations''
+As with $SO(2)$, the defining conditions of $SO(3)$ are
+\begin{align}
+R^TR &= I \label{eq:def-so3-norm-preserving} \\
+\det(R) &= 1. \label{eq:def-so3-parity-preserving}
+\end{align}
+Matrices satisfying these two conditions represent rigid rotations of 3-dimensional vectors. These matrices can be described by the following three ``basis rotations''
 \begin{align}
 R_x &= \begin{pmatrix}
 1 & 0 & 0 \\
@@ -462,7 +470,84 @@ Inspection of Eq.\eqref{eq:quaternion-3d-rot} reveals that the mapping of unit q
 t_{\phi=\pi} = \sin(\frac{\pi}{2}) u = u \\
 t_{\phi=3\pi} = \sin(\frac{3\pi}{2}) u = -u.
 \end{align}
-Hence, we call $SU(2)$ a \textbf{double-cover} of $SO(3)$, because every element of $SO(3)$ has two corresponding elements in $SU(2)$ [\textbf{TODO: I think}?]. It is therefore always possible to go unambiguously from $SU(2)$ to $SO(3)$, but not vice versa. We will see later that groups which cover other groups are fundamental for quantum spin. 
+Hence, we call $SU(2)$ a \textbf{double-cover} of $SO(3)$, because every element of $SO(3)$ has two corresponding elements in $SU(2)$ [\textbf{TODO: I think}?]. It is therefore always possible to go unambiguously from $SU(2)$ to $SO(3)$, but not vice versa. 
+
+We will see later that groups which cover other groups are fundamental for quantum spin. Note that the above had one quaternion parameter too many, which may be interpreted as a hint towards relativity: a more natural identification may have been $v=t\mathbf{1}+x\mathbf{i}+y\mathbf{j}+z\mathbf{k}$. Rotations in 4-dimensions require 6 degrees of freedom\footnote{Using ordinary 4$\times$4 matrices, with the constraints $O^TO=1$ and $\det(O)=1$ reduce the 16 components of an arbitrary 4$\times$4 matrix to 6 independent components}. However, there is no 7-dimensional generalisation of complex numbers. But two unit quaternions do have 6 degrees of freedom: we will see later how there is a close connection between two copies of $SU(2)$ and rotations in four dimensions.
+
+\section{Lie algebras}
+\subsection{Intuition behind generators}
+Consider an element of a continuous group which is arbitrarily close to the identity
+\begin{equation}
+g(\epsilon) = I + \epsilon X
+\end{equation}
+where $\epsilon$ is small, and $I$ is the identity (think about 1D rotations for concreteness). We let $X$ remain abstract for the moment. We wish to apply this transformation $N$ times to achieve a finite transformation by a total amount $\theta$, $h(\theta)$. As a result, we may write:
+\begin{equation}
+h(\theta) = (I + \frac{\theta}{N} X)^N.
+\end{equation}
+We then take the limit of $N \rightarrow \infty$, which is just the exponential function
+\begin{equation}
+h(\theta) = \lim_{N \rightarrow \infty} (I + \frac{\theta}{N})^N = e^{\theta X}.
+\end{equation}
+In this sense, the object $X$ generates the finite transformation $h$, which is why we call $X$ a \textbf{generator}.
+
+We can then differentiate $h(\theta)$ to obtain the generator:
+\begin{equation}
+X=\left.\deriv{h(\theta)}{\theta}\right|_{\theta=0}.
+\end{equation}
+If we consider a continuous group of transformations that are given by matrices, we can also make a Taylor expansion of an element of the group about the identity 
+\begin{equation}
+h(\theta) = \sum_n\frac{1}{n!}\left.\derivn{n}{h}{\theta}\right|_{\theta=0}\theta^n
+\end{equation}
+which shows how generators generate transformations.
+
+\subsection{An intuitive definition for matrix Lie groups}
+For matrix Lie groups, the corresponding Lie algebra can be defined as the collection of objects that give an element of the group when exponentiated. 
+\begin{defn}[Lie algebra for matrix Lie groups, non-rigorous]
+For a matrix Lie group $G$ (given by $n \times n$ matrices), the Lie algebra $\mathfrak{g}$ of $G$ is given by those $n \times n$ matrices $X$ such that
+\begin{equation}
+e^{tX}\in G \label{eq:def-generator-lie-matrix-group}
+\end{equation}
+for $t \in \mathbb{R}$, together with an operation called the Lie bracket, that defines how to combine elements of the Lie algebra
+\begin{equation}
+[\cdot, \cdot]: \mathfrak{g} \times \mathfrak{g} \rightarrow \mathfrak{g}.
+\end{equation}
+A Lie algebra is \textbf{closed} under the Lie bracket. 
+\end{defn}
+Note that, in general $X \circ Y \notin \mathfrak{g}$. 
+\begin{thm}
+Consider a matrix Lie group $G$ and corresponding Lie algebra $g$. If $X, Y \in \mathfrak{g}$ and $g, h \in G$, then
+\begin{equation}
+g \circ h = e^X \circ e^Y = \underbrace{e^{X + Y + \frac{1}{2}[X,Y]+\frac{1}{12}[X,[X,Y]]-\frac{1}{12}[Y,[X,Y]]+...}}_{\in G}
+\end{equation}
+where the right hand side is the Baker-Campbell-Hausdorff formula, and $[X,Y]$ is the \textbf{commutator} of $X$ and $Y$
+\begin{equation}
+[X,Y] = XY - YX
+\end{equation}
+and the commutator corresponds to the Lie bracket.
+\end{thm}
+
+\subsection{Generators and Lie algebra of $SO(3)$}
+Using the norm-preserving condition of $SO(3)$, Eq.~\eqref{eq:def-so3-norm-preserving}, along with Eq.\eqref{eq:def-generator-lie-matrix-group} $O = e^{\theta J}$, yields
+\begin{equation}
+O^TO = e^{\theta J^T} e^{\theta J} = 1 \implies J^T + J = 0,
+\end{equation}
+The parity-preserving condition in Eq.\eqref{eq:def-so3-parity-preserving} also yields\footnote{Because $\det(e^A)=e^{\tr(A)}$}
+\begin{equation}
+\det(e^{\theta J}) = e^{\theta \tr(J)} = 1 \implies \tr(J) = 0.
+\end{equation}
+A set of three matrices $J_1, J_2, J_3$ fulfilling both of these conditions can be written conveniently as
+\begin{equation}
+(J_i)_{jk} = - \epsilon_{ijk},
+\end{equation}
+where $\epsilon_{ijk}$ is the Levi-Civita symbol
+\begin{equation}
+\epsilon_{ijk} = \begin{cases} 
+1\qquad  &\text{if } (i,j,k)=\{(1,2,3), (2,3,1), (3,1,2)\}\\
+0\qquad  &\text{if } i=j\text{ or} j=k\text{ or} k=i\\
+-1\qquad &\text{if } (i,j,k)=\{(1,3,2), (2,1,3), (3,2,1)\}\\
+\end{cases}.
+\end{equation}
+
 
 \newpage
 \bibliography{physics-from-symmetry.bib} 
