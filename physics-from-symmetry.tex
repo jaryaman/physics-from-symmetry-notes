@@ -419,7 +419,7 @@ a+di & b + ci\\
 \end{equation}
 We also observe that $\det(f(q))=1$, and so we conclude that the unit quaternions are given by the set of matrices with the above form and unit determinant. The unit quaternions, written as 2$\times$2 matrices $U$ therefore fulfil the conditions
 \begin{equation}
-U^\dagger U=1 \qquad \text{and}\ \det(U)=1.
+U^\dagger U=1 \qquad \text{and}\ \det(U)=1. \label{eq:defn-su2}
 \end{equation}
 This defines the symmetry group $SU(2)$. 
 
@@ -519,11 +519,11 @@ Consider a matrix Lie group $G$ and corresponding Lie algebra $\mathfrak{g}$. If
 \begin{equation}
 g \circ h = e^X \circ e^Y = \underbrace{e^{X + Y + \frac{1}{2}[X,Y]+\frac{1}{12}[X,[X,Y]]-\frac{1}{12}[Y,[X,Y]]+...}}_{\in G} \label{eq:BCH-group-elements-Lie-elements}
 \end{equation}
-where the right hand side is the Baker-Campbell-Hausdorff formula\footnote{This holds more generally, not only for matrix Lie groups. See also Defn. \ref{defn:Lie-algebra}} and $[X,Y]$ for matrix Lie groups is the \textbf{commutator} of $X$ and $Y$:
+where the right hand side is the Baker-Campbell-Hausdorff formula\footnote{This holds more generally, not only for matrix Lie groups. See also Defn. \ref{defn:Lie-algebra}}. For \textbf{matrix Lie groups}, the Lie bracket $[X,Y]$ is \textbf{equivalent} to the \textbf{commutator} of $X$ and $Y$:
 \begin{equation}
-[X,Y] = XY - YX
+[X,Y] = XY - YX.
 \end{equation}
-and the commutator corresponds to the Lie bracket.  Eq.\eqref{eq:BCH-group-elements-Lie-elements} connects combinations of elements of the group $G$ to combinations of elements of the Lie algebra $\mathfrak{g}$.
+Eq.\eqref{eq:BCH-group-elements-Lie-elements} connects combinations of elements of the group $G$ to combinations of elements of the Lie algebra $\mathfrak{g}$.
 \end{thm}
 
 \subsection{Generators and Lie algebra of $SO(3)$}
@@ -553,9 +553,9 @@ The corresponding Lie bracket is
 \end{equation}
 In physics, it is conventional to define the generators of $SO(3)$ with an extra $i$, so that we get Hermitian generators\footnote{i.e. $J^\dagger = J$}, to arrive at
 \begin{align}
-O &= e^{i \phi J} \\
+O &= e^{i \phi J} \label{eq:def-generator-lie-matrix-group-physics} \\
 \implies (J_i)_{jk} &= -i \epsilon_{ijk} \\
-[J_i, J_k] &= i \epsilon_{ijk} J_k.
+[J_i, J_j] &= i \epsilon_{ijk} J_k. \label{eq:lie-bracket-so3}
 \end{align}
 We call the Lie bracket relation of the basis generators \textbf{the} Lie algebra of a given group, because everything that is important about a Lie algebra is encoded in the Lie bracket relation of the basis generators.
 
@@ -590,6 +590,64 @@ for all elements $X,Y \in \mathfrak{g}$.
 \end{enumerate}
 \end{defn}
 Importantly, this definition makes no reference to any Lie group: the definition of a Lie algebra stands on its own.
+
+\subsection{Generators and Lie algebra of $SU(2)$}
+Using Equations \eqref{eq:defn-su2} for the definition of $SU(2)$, and Eq.\eqref{eq:def-generator-lie-matrix-group-physics} for the definition of a generator, we arrive at
+\begin{equation}
+e^{-iJ^\dagger} e^{iJ_i} = e^{-iJ_i^\dagger + iJ_i + \frac{1}{2}[J_i^\dagger, J_i]+...}=1
+\end{equation}
+where the right-hand side uses the Baker-Campbell-Hausdorff theorem. This implies that
+\begin{align}
+J = J^\dagger \\
+\tr(J)=0
+\end{align}
+where the second equation uses $\det(U)=1$. A basis for Hermitian traceless 2$\times$2 matrices is given by the 3 \textbf{Pauli} matrices
+\begin{equation}
+\sigma_1 = \begin{pmatrix}
+0&1\\
+1&0
+\end{pmatrix}, \qquad
+\sigma_2 = \begin{pmatrix}
+0&-i\\
+i&0
+\end{pmatrix}, \qquad
+\sigma_3 = \begin{pmatrix}
+1&0\\
+0&-1
+\end{pmatrix}.
+\end{equation}
+We conventionally define $J_i \equiv \sigma_i/2$, to arrive at the Lie bracket (or, equivalently, commutator relationship)
+\begin{equation}
+[J_i, J_k] = i \epsilon_{ijk} J_k
+\end{equation}
+which is \textbf{identical} to Eq.\eqref{eq:lie-bracket-so3} for $SO(3)$! Hence we say that $SU(2)$ and $SO(3)$ have the same Lie algebra, since they share the same Lie bracket. 
+
+\subsection{Lie groups and covering groups}
+An $SU(2)$ transformation doesn't necessarily have to be represented by 2$\times$2 matrices. An abstract definition of a Lie group will enable us to see the connection between different descriptions of the same transformation. 
+
+A \textbf{Lie group} is a group that is also a differentiable manifold. A Lie group must have the group operations $\circ$ \textbf{induce} a \textbf{differentiable} map of the manifold onto itself. Concretely, this means that every group element, e.g. $A$, induces a differentiable map that takes any element of the group $B$ to another element of the group $C=AB$. 
+
+\begin{defn}[Simply connected Lie group]
+A Lie group is said to be simply connected if every closed curve on the manifold can be shrunk smoothly to a point. 
+\end{defn}
+
+\begin{thm}[Existence of a covering group]
+There exists a unique simply connected Lie group corresponding to each Lie algebra. We call this Lie group the \textbf{covering} group. All other groups having the same Lie algebra are said to be ``covered'' by the simply connected Lie group.\footnote{This is a result from differential geometry.} 
+\end{thm}
+
+\begin{defn}[Unit $n$-sphere]
+A unit $n$-sphere is denoted as the set of points satisfying
+\begin{equation}
+S^n=\{x \in \mathbb{R}^{n+1}: ||x||=1\}.
+\end{equation}
+\end{defn}
+
+$S^n$ is therefore a sphere embedded in $n+1$ dimensions, but with a unit radius constraint, implying an $n$-dimensional object. For groups we have discussed so far, we may identify:
+\begin{enumerate}
+\item $S^1$, with group operation of multiplication, is the covering group of 1-dimensional rotations. $S^1 \cong U(1) \cong SO(2)$.
+\item $S^3$, with group operation of multiplication, is the covering group of 3-dimensional rotations. $S^3 \cong SU(2) \underbrace{\rightarrow}_{\text{two-to-one}}SO(3)$.
+\end{enumerate}
+Geometrically, we can think of $SO(3)$ as a 3-sphere but with antipodal points identified: this is because each point of $SO(3)$ is associated with two points of $SU(2)$ which is equivalent to $S^3$. 
 
 \newpage
 \bibliography{physics-from-symmetry.bib} 
