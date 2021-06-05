@@ -362,7 +362,7 @@ R_z &= \begin{pmatrix}
 \cos(\theta) & -\sin(\theta) & 0 \\
 \sin(\theta) & \cos(\theta) & 0 \\
 0 & 0 & 1
-\end{pmatrix}.
+\end{pmatrix}. \label{eq:rotation-matrices-3d}
 \end{align}
 So, to rotate a vector $v$ around the $z$-axis by $\theta$, we would compute $R_z(\theta) v$. The set of (orientation-preserving) rotation matrices acting on 3-dimensional vectors is called $SO(3)$.
 
@@ -421,7 +421,7 @@ We also observe that $\det(f(q))=1$, and so we conclude that the unit quaternion
 \begin{equation}
 U^\dagger U=1 \qquad \text{and}\ \det(U)=1. \label{eq:defn-su2}
 \end{equation}
-This defines the symmetry group $SU(2)$. 
+\textbf{This defines the symmetry group} $SU(2)$. 
 
 The map between $SU(2)$ and $SO(3)$ is not as simple as the one we saw between $U(1)$ and $SO(2)$. The mapping of a complex number onto a 2-dimensional vector is easy because a complex number has two degrees of freedom: $v=x+\mathbf{i}y$. But the mapping of a quaternion onto 3-dimensional vector is not so straightforward because a quaternion has four degrees of freedom. We will make the mapping of a 3-dimensional vector $(x,y,z)^T$ onto a quaternion $v$ as
 \begin{equation}
@@ -648,6 +648,55 @@ $S^n$ is therefore a sphere embedded in $n+1$ dimensions, but with a unit radius
 \item $S^3$, with group operation of multiplication, is the covering group of 3-dimensional rotations. $S^3 \cong SU(2) \underbrace{\rightarrow}_{\text{two-to-one}}SO(3)$.
 \end{enumerate}
 Geometrically, we can think of $SO(3)$ as a 3-sphere but with antipodal points identified: this is because each point of $SO(3)$ is associated with two points of $SU(2)$ which is equivalent to $S^3$. 
+
+\section{Representation theory}
+
+Representation theory deals with \textit{representing} abstract algebraic structures (mainly groups, associative algebras, and Lie algebras) with linear transformations of vector spaces -- i.e. matrices operating on columnar vectors. Considering just groups for now, a representation abides the following definition
+\begin{defn}[Representation for a group]
+A representation is a map $R$ (or \textbf{homomorphism}) between any group element $g$ of a group $G$ onto a vector space $V$ such that:
+\begin{itemize}[noitemsep]
+\item $R(e) = I$, i.e. the identity element of the group is also the matrix identity
+\item $R(g^{-1})=(R(g))^-1$, i.e. inverse elements are mapped to inverse transforms
+\item $R(g) \circ R(h) = R(gh)$.
+\end{itemize}
+\end{defn}
+
+For example, the usual rotation matrices in Eq.\eqref{eq:rotation-matrices-3d} are a representation of the group $SO(3)$ on the vector space $\textbf{R}^3$. Representation theory allows us to examine the effect of the group on other vector spaces -- of potentially different dimensionality than the definition of the group itself.
+
+\begin{thm}[Similarity transformation]
+If $R$ is a representation of group $G$ with elements $g$, then for any invertible matrix $S$,
+\begin{equation}
+R'(g) = S^{-1}R(g)S
+\end{equation}
+is also a representation.
+\end{thm}
+\begin{proof}
+Follows immediately from the definition of a representation. For example,
+\begin{equation}
+R'(g_1)R'(g_2) = S^{-1}R(g_1)SS^{-1}R(g_2)S = S^{-1}R(g_1)R(g_2)S = S^{-1}R(g_1 g_2)S = R'(g_1 g_2).
+\end{equation}
+\end{proof}
+This freedom to perform similarity transformations corresponds to the freedom to choose a basis for the vector space the group acts on.
+
+\begin{defn}[Invariant subspace]
+Given a representation $R$ of a group $G$ on vector space $V$, we call $V' \subseteq V$ an invariant subspace if for all $v \in V'$, we have $R(g) \in V'$.
+\end{defn}
+
+\begin{defn}[Subrepresentation]
+A subrepresentation of a representation $(R, V)$ of a group $G$ is a representation $(R', V')$ such that $V' \subseteq V$ and 
+\begin{equation}
+R'(g)v = R(g)v
+\end{equation}
+for all $v \in V'$.
+\end{defn}
+
+\begin{defn}[Irreducible representation]
+An irreducible representation is a representation $(R, V)$ of a group $G$ that has no invariant subspace besides the zero space $\{0\}$ and $V$ itself.
+\end{defn}
+
+\begin{thm}[Irreducible representations and block diagonal form]
+An irreducible representation is a representation which cannot be rewritten, using a similarity transformation, into block diagonal form. In contrast, reducible representations can be rewritten in block diagonal form through similarity transformations.
+\end{thm}
 
 \newpage
 \bibliography{physics-from-symmetry.bib} 
