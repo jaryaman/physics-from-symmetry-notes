@@ -12,6 +12,7 @@
 \usepackage{tensor}
 \usepackage{cancel}
 \usepackage{wasysym}
+\usepackage{braket}
 
 \usepackage{amsthm} % theorem
 
@@ -616,9 +617,13 @@ i&0
 0&-1
 \end{pmatrix}.
 \end{equation}
-We conventionally define $J_i \equiv \sigma_i/2$, to arrive at the Lie bracket (or, equivalently, commutator relationship)
+We conventionally define 
 \begin{equation}
-[J_i, J_k] = i \epsilon_{ijk} J_k
+J_i \equiv \sigma_i/2 \label{eq:generator-su2-lie-algebra}
+\end{equation}
+to arrive at the Lie bracket (or, equivalently, commutator relationship)
+\begin{equation}
+[J_i, J_k] = i \epsilon_{ijk} J_k 
 \end{equation}
 which is \textbf{identical} to Eq.\eqref{eq:lie-bracket-so3} for $SO(3)$! Hence we say that $SU(2)$ and $SO(3)$ have the same Lie algebra, since they share the same Lie bracket. 
 
@@ -649,7 +654,7 @@ $S^n$ is therefore a sphere embedded in $n+1$ dimensions, but with a unit radius
 \end{enumerate}
 Geometrically, we can think of $SO(3)$ as a 3-sphere but with antipodal points identified: this is because each point of $SO(3)$ is associated with two points of $SU(2)$ which is equivalent to $S^3$. 
 
-\section{Representation theory}
+\subsection{Representation theory}
 
 Representation theory deals with \textit{representing} abstract algebraic structures (mainly groups, associative algebras, and Lie algebras) with linear transformations of vector spaces -- i.e. matrices operating on columnar vectors. Considering just groups for now, a representation abides the following definition
 \begin{defn}[Representation for a group]
@@ -697,6 +702,59 @@ An irreducible representation is a representation $(R, V)$ of a group $G$ that h
 \begin{thm}[Irreducible representations and block diagonal form]
 An irreducible representation is a representation which cannot be rewritten, using a similarity transformation, into block diagonal form. In contrast, reducible representations can be rewritten in block diagonal form through similarity transformations.
 \end{thm}
+
+There are many representations for any particular group. How do we know which ones to choose to describe nature?
+
+\begin{defn}[General linear group of a vector subspace]
+$GL(V)$ is the set of $n\times n$ invertible matrices, together with ordinary matrix multiplication on a vector space $V$. It is the group of automorphisms of $V$, i.e. the set of bijective linear transformations $V \rightarrow V$. 
+\end{defn}
+
+\begin{lma}[Schur's Lemma]
+If we have an irreducible representation $R: \mathfrak{g} \rightarrow GL(V)$, then any linear operator $T : V \rightarrow V$ that commutes with all operators $R(X)$ for $X \in \mathfrak{g}$, must be a scalar multiple of the identity operator.
+\end{lma}
+
+\begin{defn}[Casimir element]
+A Casimir element $C$ is an object with the property
+\begin{equation}
+[C, X] = 0 \label{eq:casimir-commutes}
+\end{equation}
+for every $X \in \mathfrak{g}$ where $\mathfrak{g}$ is a Lie algebra. Note that if $C$ commutes with each basis of $\mathfrak{g}$ then it follows that $C$ obeys Eq.\eqref{eq:casimir-commutes}.
+\end{defn}
+
+Consequently, by Schur's Lemma, the Casimir element for any given representation of a Lie algebra must be a scalar multiple of the identity. This scalar provides us with a number to label representations of Lie algebras. \textbf{Physical mass and spin turn out to be examples of these constants of proportionality}.
+
+\subsection{$SU(2)$}
+
+On our way to describing the Poincar\'{e} group, we will first discuss irreducible representations of $SU(2)$, which will then allow us to start talking about special relativity again.
+
+\subsubsection{Finite dimensional irreducible representations}
+
+\begin{defn}[Quadratic Casimir element]
+Quadratic Casimir elements are the simplest Casimir elements and are constructed as quadratic polynomials of generators of a Lie algebra.
+\end{defn}
+
+For the Lie algebra $\mathfrak{su}(2)$, there exists a \textbf{unique} Casimir element
+\begin{equation}
+J^2 = J_1^2 + J_2^2 + J_3^2
+\end{equation}
+where $J_i$ is the basis for the Lie algebra Eq.\eqref{eq:generator-su2-lie-algebra}. Different dimensional representations will give different representations of the Casimir operator: in 2-D $J^2_{2\mathrm{d}}=3/4 \cdot I$ whereas $J^2_{3\mathrm{d}}=2 \cdot I$. Letting $J^2 v = b v$, for some vector $v$, then we will use $b$ to label the representation.
+
+\begin{defn}[Cartan element]
+Cartan elements of a representation of a Lie algebra are those basis generators which are simultaneously diagonalizable.\footnote{A set of matrices are simultaneously diagonalizable if there exists a matrix $P$ such that $P^{-1}AP$ is a diagonal matrix for every $A$ in the set.}
+\end{defn}
+
+Only one basis generator of $\mathfrak{su}(2)$ can be diagonalized at a time, therefore the Cartan element of $\mathfrak{su}(2)$ is unique. It is customary to use $J_3$ for this purpose. We will show below that the eigenvalues of $J_3$ ($m$) label the elements of the vector space that the Lie algebra acts upon.
+
+\begin{defn}[Bra-ket notation] 
+If $\phi$ is a vector in a complex vector space, then we use $\ket{\phi}$ to denote this vector (pronounced ``ket-phi''). Any convenient label can be used inside the ket $\ket{\ }$, which denotes that the object is simply a vector in a vector space. A bra $\bra{\phi}$ is an element of the dual vector space, i.e.\ a bra is a linear functional which is a linear map from the vector space to the complex numbers. 
+\end{defn}
+
+We will therefore label every basis vector, for every representation of a Lie algebra, in bra-ket notation as follows
+\begin{align}
+J^2 \ket{b, m} &= b \ket{b, m} \nonumber \\
+J_3 \ket{b, m} &= m \ket{b, m}
+\end{align}
+where $m$ labels the representation and $b$ labels the vector within the representation.
 
 \newpage
 \bibliography{physics-from-symmetry.bib} 
