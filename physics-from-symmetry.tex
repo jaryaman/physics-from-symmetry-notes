@@ -623,7 +623,7 @@ J_i \equiv \sigma_i/2 \label{eq:generator-su2-lie-algebra}
 \end{equation}
 to arrive at the Lie bracket (or, equivalently, commutator relationship)
 \begin{equation}
-[J_i, J_k] = i \epsilon_{ijk} J_k 
+[J_i, J_k] = i \epsilon_{ijk} J_k \label{eq:lie-bracket-su2}
 \end{equation}
 which is \textbf{identical} to Eq.\eqref{eq:lie-bracket-so3} for $SO(3)$! Hence we say that $SU(2)$ and $SO(3)$ have the same Lie algebra, since they share the same Lie bracket. 
 
@@ -754,7 +754,65 @@ We will therefore label every basis vector, for every representation of a Lie al
 J^2 \ket{b, m} &= b \ket{b, m} \nonumber \\
 J_3 \ket{b, m} &= m \ket{b, m}
 \end{align}
-where $m$ labels the representation and $b$ labels the vector within the representation.
+where $m$ \textbf{labels the representation} and $b$ \textbf{labels the vector within the representation}. We can obtain basis vectors for the representation by enumerating the eigenvalues of $J^2$ and $J_3$. 
+
+\begin{defn}[Ladder operators for $\mathfrak{su}(2)$]
+Define the following complex linear combination of the basis generators of $SU(2)$
+\begin{align}
+J_+ &= J_1 + i J_2 \\
+J_- &= J_1 - i J_2. \\
+\end{align}
+where $J_+$ is a \textbf{raising} operator and $J_-$ is a \textbf{lowering} operator.
+\end{defn}
+In $\mathfrak{su(2)}$ we only consider real linear combinations of generators, so we thus expand our consideration to the \textbf{complexification} of $\mathfrak{su}(2)$, called $\mathfrak{sl}(2, \mathbb{C})$ where $SL(2,\mathbb{R})$ is the special linear group.
+
+Applying Eq.\eqref{eq:lie-bracket-su2} gives rise to two new commutation relations
+\begin{align}
+[J_3, J_{\pm}] &= \pm J_{\pm} \\
+[J_+, J_-] &= 2 J_3.
+\end{align}
+As a result, we find that if $\ket{b,m}$ is an eigenvector of $J_3$ with eigenvalue $m$, then $J_{\pm}\ket{b,m}$ is also an eigenvector of $J_3$ with eigenvalue $m \pm 1$, i.e.
+\begin{align}
+J_3 J_{\pm}\ket{b,m} &= (m \pm 1) J_{\pm}\ket{b,m} \\
+\implies J_{\pm}\ket{b,m} &\propto \ket{b,m \pm 1}. \label{eq:ladder_propto_m_pm_1}
+\end{align}
+
+
+There can only be a finite number of eigenvectors of $J_3$ because we are dealing with a finite-dimensional representation, because the vector space is finite dimensional and therefore there can only be a finite number of linearly independent vectors. Therefore, there must exist an eigenvector with a maximum eigenvalue -- let's call it $j$. It must have the property
+\begin{equation}
+J_+ \ket{b,j} = 0.
+\end{equation}
+Using
+\begin{equation}
+J_- J_+ = J^2 - J_3^2 - J_3
+\end{equation}
+then it follows from the action of $J_- J_+ \ket{b, j}$ that
+\begin{equation}
+b = j(j+1).
+\end{equation}
+If we let $k$ be the minimum eigenvalue of $J_3$, then an analogous argument allows us to conclude that $k = -j$ and therefore
+\begin{equation}
+-j \leq m \leq j.
+\end{equation}
+Hence we have derived a relationship between the whole representation and the number of states in the vector space.
+
+Now, if we begin at $\ket{b, j}$ and by applying the lowering operator $J_-$ we reduce the eigenvalue of $J_3$ by 1. We perform this operation some finite number of times, and hence $j - k$ must be an integer. But $k = -j$, so
+\begin{equation}
+2j = \text{integer} \implies j = \frac{\text{integer}}{2}.
+\end{equation}
+Simply plugging in $j = 0, 1/2, 1, 3/2, ...$ allows us to enumerate all representations of $\mathfrak{su}(2)$.
+
+Lastly, by assuming that our basis vectors $\ket{b,m}$ are normalized
+\begin{equation}
+\ket{b,m}^\dagger \ket{b,m} = 1
+\end{equation}
+we can derive the constant of proportionality in Eq.\eqref{eq:ladder_propto_m_pm_1}. By observing that $(J_+\ket{b,m})^\dagger J_+ \ket{b,m} = |C|^2$ where $C$ is the constant of proportionality, and by using an analogous argument for $J_-$, we arrive at
+\begin{align}
+J_+ \ket{j(j+1),m} &= \sqrt{j(j+1) - m^2 - m} \ket{j(j+1), m+1} \\
+J_- \ket{j(j+1),m} &= \sqrt{j(j+1) - m^2 + m} \ket{j(j+1), m-1}.
+\end{align}
+Finally, note that the representation label $j(j+1)$  takes up a lot of space and is somewhat redundant, so we tend to label states simply as $\ket{j,m}$ rather than $\ket{j(j+1),m}$. The tools above will allow us to derive explicit representations of $SU(2)$ in different dimensions.
+
 
 \newpage
 \bibliography{physics-from-symmetry.bib} 
