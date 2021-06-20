@@ -91,6 +91,8 @@
 \newtheorem{rle}{Rule}[section]
 \newtheorem{lma}{Lemma}[section]
 
+\newcommand{\bs}{\boldsymbol}
+
 %Preamble end--------------------------------------------------
 
 
@@ -162,14 +164,18 @@ so
 for \textbf{any} pair of events (which are causally connected, although how this follows is not immediately clear to me right now). 
 
 \subsection{Einstein notation}
-Moving from left to right, the first index denotes a row, the second index denotes a column, and so on. Hence
+Moving from left to right, the first index denotes a row, the second index denotes a column, and so on for higher-order tensors. Hence
 \begin{equation}
 (\textbf{A})_{ij} \defeq \tensor{A}{^i_j}
 \end{equation}
-where the right hand side is Einstein notation, and the left hand side is usual matrix element notation. ``Upper indicies go up to down; lower indicies go left to right''. We commonly use the conventions:
+where the right hand side is Einstein notation, and the left hand side is usual matrix element notation. 
+
+Throughout this document, where it is instructive to do so, we use a bold symbol (e.g. $\bs{A}$) to stress where we are using conventional matrix notation. We denote the value of the $i$th row and $j$th column of the matrix as $(\bs{A})_{ij}$. However, it is cumbersome and unconventional in the physics community to always denote matrices with a bold symbol, so we often drop the bold symbol and simply denote a matrix $\bs{A}$ as simply $A$. We will, however, \textbf{avoid} writing things like $A_{\mu \nu}$ to denote the $(\mu, \nu)$th element of an arbitrary matrix because such notation has a very particular meaning in Einstein notation. If you see something like $\tensor{A}{_\mu _\nu}$ (i.e. a normal typeface with indices) in this document, then you should assume that we mean what we say\footnote{Unless, of course, I've made a mistake! In which case, my dear reader, you could leave a \href{https://github.com/jaryaman/physics-from-symmetry-notes/issues}{git issue} and I'll do my best to make a fix.} -- in this case $\tensor{A}{_\mu_\nu} = \tensor{A}{^\rho_\nu} \tensor{g}{_\rho_\mu}$ which is \textbf{not} the same as $(\bs{A})_{\mu \nu}$ in general (see below for explanation).
+
+In Einstein notation, we can use the mnemonic ``Upper indices go up to down [column vector, contravariant]; lower indices go left to right [row vector, covariant]''. We commonly use the conventions:
 \begin{itemize}
-\item Greek letters are used for spacetime components, where indicies take values 0, 1, 2, or 3.
-\item Latin letters are used for spatial components only, where indicies take values 1, 2, or 3.
+\item Greek letters are used for spacetime components, where indices take values 0, 1, 2, or 3.
+\item Latin letters are used for spatial components only, where indices take values 1, 2, or 3.
 \end{itemize}
 The \textbf{Einstein summation convention} states that where an index appears twice in a single term, and not otherwise defined, it implies summation of that term over all values of the index.
 
@@ -182,13 +188,21 @@ u^i = \tensor{A}{^i_j} v^j.
 \begin{equation}
 \tensor{C}{^i_k} = \tensor{A}{^i_j} \tensor{A}{^j_k}  \iff  (\textbf{C})_{ik} = (\textbf{AB})_{ik}.
 \end{equation}
+The upstairs/downstairs-ness of this equation is irrelevant: what matters is the left/right \textbf{ordering} of the indices, as well as which indices are repeated. For example
+\begin{equation}
+\tensor{A}{^\mu_\delta} \tensor{\eta}{_\delta _\nu} = (\boldsymbol{A \eta})_{\mu\nu}.
+\end{equation}
 
 \paragraph{Transpose} The transpose of a matrix is written as
 \begin{equation}
 (\textbf{B}^T)_{ij} \defeq (\textbf{B})_{ji} =  \tensor{B}{^j_i} \label{eq:transpose-einstein-notation}
 \end{equation}
+So, for example
+\begin{equation}
+\tensor{A}{^\delta_\mu} \tensor{\eta}{_\delta _\nu} = \tensor{(\protect{A^T})}{^\mu_\delta} \tensor{\eta}{_\delta _\nu}  = (\boldsymbol{A^T \eta})_{\mu \nu}. \label{eq:complicated-example-matrix-mul-transp}
+\end{equation}
 
-\paragraph{Raising/lowering with metric tensor} In order to be able to freely raise/lower indicies (without repeatedly writing the metric tensor), we impose an ordering upon indicies of tensor fields -- which we represent typographically with spacing between tensor indicies. A metric $g_{ij}$ (or $g^{ij}$) has the effect of lowering (or raising) a repeated index. For example,
+\paragraph{Raising/lowering with metric tensor} In order to be able to freely raise/lower indices (without repeatedly writing the metric tensor), we impose an ordering upon indices of tensor fields -- which we represent typographically with spacing between tensor indices. A metric $g_{ij}$ (or $g^{ij}$) has the effect of lowering (or raising) a repeated index. For example,
 \begin{equation}
 g_{iq} \tensor{T}{^{abcd}_{efgh}^{ijkl}_{mnop}}  = \tensor{T}{^{abcd}_{efghq}^{jkl}_{mnop}}.
 \end{equation}
@@ -251,8 +265,8 @@ We can write this in ordinary matrix notation using Eq.\eqref{eq:transpose-einst
 \begin{align}
 \eta_{\mu \nu} &= \tensor{\Lambda}{^\sigma_\mu}  \eta_{\sigma \delta} \tensor{\Lambda}{^\delta_\nu} \nonumber \\
 \eta_{\mu \nu} &= \tensor{(\Lambda^T)}{^\mu_\sigma}  \eta_{\sigma \delta} \tensor{\Lambda}{^\delta_\nu} \nonumber \\
-\eta_{\mu \nu} &= \tensor{(\Lambda^T \eta \Lambda)}{^\mu_\nu} \nonumber \\
-\eta &= \Lambda^T \eta \Lambda. \nonumber
+(\bs{\eta})_{\mu \nu} &= (\bs{\Lambda^T \eta \Lambda})_{\mu \nu} \nonumber \\
+\bs{\eta} &= \bs{\Lambda}^T \bs{\eta \Lambda}. \nonumber
 \end{align}
 The physical meaning of Eq.\eqref{eq:lorentz-tfm-characteristic} is that Lorentz transformations leave the scalar product of Minkowski spacetime invariant: i.e. changes between frames of reference that respect the two postualtes of special relativity (Section~\ref{sec:postualtes-sr}). Conservation of the scalar product is analogous to rigid rotation ($O$) in Euclidean space ($a \cdot b = a' \cdot b' = a^T O^T O b \implies O^T I O = I$), which preserves orientation ($\det(\Lambda)=1$).
 
@@ -920,7 +934,22 @@ Notice that only $L_+^\uparrow$ can be built up by infinitesimal transformations
 \label{fig:lorentz-group-components}
 \end{figure}
 
-
+\subsection{Representation of the Lorentz group}
+Consider a series expansion of $\tensor{\Lambda}{^\mu_\rho}$, and take the first linear term for an infinitesimal Lorentz transformation 
+\begin{equation}
+\tensor{\Lambda}{^\mu_\rho} \approx \tensor{\delta}{^\mu _\rho} + \epsilon \tensor{K}{^\mu _\rho} + ...
+\end{equation}
+Substituting this into Eq.\eqref{eq:lorentz-tfm-characteristic}, we end up with
+\begin{align}
+\eta_{\sigma \nu} \tensor{K}{^\sigma _\mu} + \eta_{\mu \delta} \tensor{K}{^\delta _\nu}   &= 0 \\
+\tensor{K}{^\sigma _\mu} \eta_{\sigma \nu} + \eta_{\mu \delta} \tensor{K}{^\delta _\nu}   &= 0
+\end{align}
+Noting that $\tensor{C}{^i_j} = \tensor{A}{^i_k}\tensor{A}{^k_j}$ and using the definition of the transpose (see e.g. Eq.\eqref{eq:complicated-example-matrix-mul-transp}),
+\begin{align}
+\tensor{(\protect{K^T})}{^\mu _\sigma} \tensor{\eta}{_\sigma _\nu} + \tensor{\eta}{_\mu_\delta} \tensor{K}{^\delta _\nu}   &= 0 \\
+(\boldsymbol{K}^T\boldsymbol{\eta})_{\mu \nu} + (\boldsymbol{\eta K})_{\mu \nu}   &= 0 \\
+\boldsymbol{K}^T\boldsymbol{\eta} = - \boldsymbol{\eta K}
+\end{align}
 \newpage
 \bibliography{physics-from-symmetry.bib} 
 
