@@ -70,6 +70,7 @@
 \newcommand{\derivn}[3]{\frac{\ensuremath{\operatorname{d}^{#1}\!{#2}}}{\ensuremath{\operatorname{d}\!{#3}^{#1}}}}
 \DeclareMathOperator{\diag}{diag}
 \DeclareMathOperator{\tr}{tr}
+\newcommand{\tn}[2]{\tensor{#1}{#2}}
 
 % Make theorems bold
 \makeatletter
@@ -666,7 +667,7 @@ i&0
 \end{equation}
 We conventionally define 
 \begin{equation}
-J_i \equiv \sigma_i/2 \label{eq:generator-su2-lie-algebra}
+J_i \equiv \sigma_i/2 \label{eq:generator-su2-lie-algebra-2d}
 \end{equation}
 to arrive at the Lie bracket (or, equivalently, commutator relationship)
 \begin{equation}
@@ -774,7 +775,7 @@ Consequently, by Schur's Lemma, the Casimir element for any given representation
 
 On our way to describing the Poincar\'{e} group, we will first discuss irreducible representations of $SU(2)$, which will then allow us to start talking about special relativity again.
 
-\subsubsection{Finite dimensional irreducible representations}
+\subsubsection{Finite dimensional irreducible representations}\label{sec:finite-dim-irr-repr}
 
 \begin{defn}[Quadratic Casimir element]
 Quadratic Casimir elements are the simplest Casimir elements and are constructed as quadratic polynomials of generators of a Lie algebra.
@@ -784,7 +785,7 @@ For the Lie algebra $\mathfrak{su}(2)$, there exists a \textbf{unique} Casimir e
 \begin{equation}
 J^2 = J_1^2 + J_2^2 + J_3^2
 \end{equation}
-where $J_i$ is the basis for the Lie algebra Eq.\eqref{eq:generator-su2-lie-algebra}. Different dimensional representations will give different representations of the Casimir operator: in 2-D $J^2_{2\mathrm{d}}=3/4 \cdot I$ whereas $J^2_{3\mathrm{d}}=2 \cdot I$. Letting $J^2 v = b v$, for some vector $v$, then we will use $b$ to label the representation.
+where $J_i$ is the basis for the Lie algebra Eq.\eqref{eq:generator-su2-lie-algebra-2d}. Different dimensional representations will give different representations of the Casimir operator: in 2-D $J^2_{2\mathrm{d}}=3/4 \cdot I$ whereas $J^2_{3\mathrm{d}}=2 \cdot I$. Letting $J^2 v = b v$, for some vector $v$, then we will use $b$ to label the representation.
 
 \begin{defn}[Cartan element]
 Cartan elements of a representation of a Lie algebra are those basis generators which are simultaneously diagonalizable.\footnote{A set of matrices are simultaneously diagonalizable if there exists a matrix $P$ such that $P^{-1}AP$ is a diagonal matrix for every $A$ in the set.}
@@ -835,7 +836,7 @@ J_- J_+ = J^2 - J_3^2 - J_3
 \end{equation}
 then it follows from the action of $J_- J_+ \ket{b, j}$ that
 \begin{equation}
-b = j(j+1).
+b = j(j+1). \label{eq:connection-max-eval-cartan-and-casimir-element-su2}
 \end{equation}
 If we let $k$ be the minimum eigenvalue of $J_3$, then an analogous argument allows us to conclude that $k = -j$ and therefore
 \begin{equation}
@@ -879,7 +880,7 @@ We therefore have the basis vectors of the Lie algebra as
 1
 \end{pmatrix}.
 \end{equation}
-We can find the explicit matrix form of the other two $SU(2)$ generators by rewriting Eq.\eqref{eq:ladder-operators-su2} in terms of $J_1$ and $J_2$. We can apply $J_1$ and $J_2$ on the two basis vectors above, and concatenate the corresponding vectors into the matrix representations of $J_1$ and $J_2$. We then recover \eqref{eq:generator-su2-lie-algebra}. This can be repeated for any dimension you like.
+We can find the explicit matrix form of the other two $SU(2)$ generators by rewriting Eq.\eqref{eq:ladder-operators-su2} in terms of $J_1$ and $J_2$. We can apply $J_1$ and $J_2$ on the two basis vectors above, and concatenate the corresponding vectors into the matrix representations of $J_1$ and $J_2$. We then recover \eqref{eq:generator-su2-lie-algebra-2d}. This can be repeated for any dimension you like.
 
 \subsection{The Lorentz group $O(1,3)$}
 
@@ -1026,22 +1027,22 @@ Eq.\eqref{eq:commutator-rotation-rotation} shows us that rotation generators are
 
 We now complexify the Lie algebra, changing the basis into components of the Lie algebra's two ``ideals'' $N^+$ and $N^-$:
 \begin{equation}
-N_i^\pm = \frac{J_i \pm K_i}{2}.
+N_i^\pm = \frac{J_i \pm i K_i}{2}. \label{eq:complexification-lie-algebra-lorentz-group}
 \end{equation}
 These generators are now separately closed under commutation, and also commute with each other
 \begin{align}
 [N_i^+, N_j^+] &= i \epsilon_{ijk} N_k^+ \\
 [N_i^-, N_j^-] &= i \epsilon_{ijk} N_k^- \\
-[N_i^+, N_j^-] &= 0.
+[N_i^+, N_j^-] &= 0. 
 \end{align}
-Notice that the first two commutation relations are precisely the commutation relations we derived for $SU(2)$ in Eq.\eqref{eq:lie-bracket-su2}! We have therefore discovered that the complexified Lie algebra of $L^\uparrow_+$ consists of two copeis of the Lie algebra of the complexification of $\mathfrak{su}(2)$. Technically, we have shown that
+Notice that the first two commutation relations are precisely the commutation relations we derived for $SU(2)$ in Eq.\eqref{eq:lie-bracket-su2}! We have therefore discovered that the complexified Lie algebra of $L^\uparrow_+$ consists of two copies of the Lie algebra of the complexification of $\mathfrak{su}(2)$. Technically, we have shown that
 \begin{equation}
 \mathfrak{so}(1,3)_\mathbb{C}  \cong \mathfrak{sl}(2, \mathbb{C}) \oplus \mathfrak{sl}(2, \mathbb{C})
 \end{equation}
 where $\mathfrak{sl}(2, \mathbb{C})$ is the complexification of $\mathfrak{su}(2)$, $\cong$ denotes an isomorphism, and $\oplus$ denotes the direct sum of a Lie algebra (see Defn.~\ref{defn:direct-sum-lie-algebra}).
 
 \begin{defn}[Direct sum of two Lie algebras] \label{defn:direct-sum-lie-algebra}
-For two Lie algegras $\mathfrak{g}$ and $\mathfrak{g}'$, their direct sum Lie algebra is the vector space $\mathfrak{g} \oplus \mathfrak{g}'$ consisting of all pairs $(x, x')$, $x \in \mathfrak{g}$, $x' \in \mathfrak{g'}$, with the operation
+For two Lie algebras $\mathfrak{g}$ and $\mathfrak{g}'$, their direct sum Lie algebra is the vector space $\mathfrak{g} \oplus \mathfrak{g}'$ consisting of all pairs $(x, x')$, $x \in \mathfrak{g}$, $x' \in \mathfrak{g'}$, with the operation
 \begin{equation}
 [(x, x'), (y, y')] = ([x,y], [x',y'])
 \end{equation}
@@ -1051,6 +1052,82 @@ such that copies of $\mathfrak{g}$ and $\mathfrak{g}'$ commute with each other
 \end{equation}
 \end{defn}
 
+In Section~\ref{sec:finite-dim-irr-repr} we found that we can label each irreducible representation of $\mathfrak{su}(2)$ by the scalar value of the Casimir element (see Eq.\eqref{eq:connection-max-eval-cartan-and-casimir-element-su2}, we will simply use $j$ instead of $j(j+1)$). Since the Lorentz group consists of two copies of $\mathfrak{su}(2)$, we need two labels to label each irreducible representation of the Lorentz group: $j_1$ and $j_2$ where $j_1, j_2 = 0, 1/2, 1, 3/2, ...$.
+
+Finally, note that it is conventional to write the Lie algebra of the Lorentz group more compactly as 
+\begin{align}
+J_i &= \frac{1}{2} \epsilon_{ijk} M_{jk} \\
+K_i &= M_{0i} 
+\end{align}
+where
+\begin{equation}
+[\tn{M}{_\mu_\nu},\tn{M}{_\rho_\sigma}] = i(\tn{\eta}{_\mu _\rho} \tn{M}{_\nu _\sigma} - \tn{\eta}{_\mu _\sigma} \tn{M}{_\nu _\rho} - \tn{\eta}{_\nu _\rho} \tn{M}{_\mu _\sigma} + \tn{\eta}{_\nu _\sigma} \tn{M}{_\mu _\rho}).
+\end{equation}
+
+\subsection{Finite dimensional irreducible representations of the Lorentz group}
+We denote the finite dimensional irreducible representations of the Lorentz group as $(j_1, j_2)$ where $j_1$ corresponds to the Casimir element of the $N^+$ copy of $SU(2)$, and $j_2$ corresponds to the Casimir element of the $N^-$ copy in Eq.\eqref{eq:complexification-lie-algebra-lorentz-group}.
+
+\subsubsection{The $(0,0)$ representation}
+This is the lowest dimensional representation. Both copies of $SU(2)$ are 1-dimensional, and the only 1$\times$1 matrices that fulfils the commutation relations is the number 0. Hence
+\begin{equation}
+N_i^+ = N_i^- = 0
+\end{equation}
+corresponding to the identity. The $(0,0)$ representation therefore acts on objects, called \textbf{Lorentz scalars}, that do not change under Lorentz transformations. This is called the \textbf{scalar representation}. Examples of Lorentz scalars turn out to be spacetime distance between two events; the length of 4-velocities; and the Ricci curvature in a point in spacetime (from General relativity). 
+
+\subsection{The $(\frac{1}{2},0)$ representation}
+In this representation, we use the 2-dimensional representation for one copy of $SU(2)$ $N_i^+ = \sigma_i/2$ (see Eq.\eqref{eq:generator-su2-lie-algebra-2d}), and the 1-dimensional representation for the other $N_i^-=0$. Using Eq.\eqref{eq:complexification-lie-algebra-lorentz-group} we find
+\begin{align}
+J_i &= \frac{\sigma_i}{2} \\
+K_i &= \frac{-i}{2} \sigma_i.
+\end{align}
+Letting rotations be denoted by $R_i(\theta)$ and boosts by $B_i(\phi)$, we have
+\begin{align}
+R_i(\theta) &= e^{\frac{i \theta}{2}  \sigma_i} \\
+B_i(\phi) &= e^{\frac{\phi}{2}  \sigma_i}.
+\end{align}
+So, for example, writing out explicitly the form of $R_1(\theta) \equiv R_x(\theta)$, we have
+\begin{equation}
+R_x(\theta) = \begin{pmatrix}
+\cos(\theta/2) & i \sin(\theta/2) \\
+i \sin(\theta/2) & \cos(\theta/2)
+\end{pmatrix}. \label{eq:rotation-left-chiral-lorentz-tfm}
+\end{equation}
+Contrast this to the 2D rotation matrix in Eq.\eqref{eq:2d-rotation-matrix}. It is clear that the object which such transformations operate on \textbf{are not} simple two-dimensional vectors, or indeed even 4-vectors of Minkowski space. The \textbf{two-component} object  this representation acts upon are called \textbf{left-chiral spinors}.
+\begin{defn}[Left-chiral spinor]
+Is an object that transforms under the $(\frac{1}{2},0)$ representation of the Lorentz group. We denote them as 
+\begin{equation}
+\chi_L = \begin{pmatrix}
+(\chi_L)_1 \\
+(\chi_L)_2 
+\end{pmatrix}.
+\end{equation}
+\end{defn}
+\noindent We will see later that the two components of this object correspond to \textbf{spin-up} and \textbf{spin-down}. 
+
+Notice how the factor of $\theta/2$ in Eq.\eqref{eq:rotation-left-chiral-lorentz-tfm} means that rotation of a spinor by $2\pi$ gives a minus sign. A spinor must be rotated by $4\pi$ to get the identity transform. We saw from the previous section that the lowest-dimensional representation of the Lorentz group is always the identity, and therefore trivial. Hence, we may say that \textbf{a spinor is the simplest object that can be Lorentz-transformed} \citep{Steane13}.
+
+\subsection{The $(0, \frac{1}{2})$ representation}
+This follows identically to the previous section, except with $N_i^+=0$ and $N_i^- = \sigma_i/2$. 
+\begin{align}
+J_i &= \frac{\sigma_i}{2} \\
+K_i &= \frac{i}{2} \sigma_i.
+\end{align}
+So,
+\begin{align}
+R_i(\theta) &= e^{\frac{i \theta}{2}  \sigma_i} \\
+B_i(\phi) &= e^{-\frac{\phi}{2}  \sigma_i}.
+\end{align}
+We see rotations under this representation are identical to the $(\frac{1}{2},0)$ representation, but boosts differ by a minus sign in the exponent. Hence, objects which transform under the $(0, \frac{1}{2})$ representation are \textbf{similar but not identical to} left-chiral spinors.
+\begin{defn}[Right-chiral spinor]
+Is an object that transforms under the $(0, \frac{1}{2})$ representation of the Lorentz group. We denote them as 
+\begin{equation}
+\chi_R = \begin{pmatrix}
+(\chi_R)^1 \\
+(\chi_R)^2 
+\end{pmatrix}.
+\end{equation}
+\end{defn}
+\noindent The generic name for left- and right-chiral spinors is \textbf{Weyl spinors}.
 
 \newpage
 \bibliography{physics-from-symmetry.bib} 
