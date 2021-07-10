@@ -1129,6 +1129,41 @@ Is an object that transforms under the $(0, \frac{1}{2})$ representation of the 
 \end{defn}
 \noindent The generic name for left- and right-chiral spinors is \textbf{Weyl spinors}.
 
+\subsection{Van der Waerden Notation}
+
+Van der Waerden Notation introduces dotted indices to distinguish chirality.
+
+\begin{defn}[Undotted indices (chiral indices)]
+Define a left-chiral spinor with a lower, undotted, index
+\begin{equation}
+\chi_L = \chi_a
+\end{equation}
+\end{defn}
+
+\begin{defn}[Dotted indices (anti-chiral indices)]
+Define a right-chiral spinor with an upper, dotted, index
+\begin{equation}
+\chi_R = \chi^{\dot{a}}
+\end{equation}
+\end{defn}
+
+\begin{defn}[Spinor metric]
+The spinor metric is defined as 
+\begin{equation}
+\tn{\epsilon}{^a^b} = i \tn{(\sigma_y)}{^a^b} = \begin{pmatrix}
+0 & 1 \\
+-1 & 0
+\end{pmatrix}
+\end{equation}
+and with lower indices
+\begin{equation}
+\tn{\epsilon}{_a_b} = (\tn{\epsilon}{^a^b})^T = \begin{pmatrix}
+0 & -1 \\
+1 & 0
+\end{pmatrix}
+\end{equation}
+\end{defn}
+
 \newpage
 \bibliography{physics-from-symmetry.bib} 
 
