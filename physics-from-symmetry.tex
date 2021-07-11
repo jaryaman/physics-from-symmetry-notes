@@ -1164,6 +1164,32 @@ and with lower indices
 \end{equation}
 \end{defn}
 
+Using the manner in which left and right chiral spinors Lorentz transform, we can show that
+\begin{equation}
+\chi^{\dot{a}} = \tn{\epsilon}{^a^b} \chi^*_a
+\end{equation}
+where $^*$ denotes complex conjugation. We therefore have the rule that complex conjugation transforms an undotted index into a dotted index, and vice versa:
+\begin{align}
+(\chi^{\dot{a}})^* &= \chi^a  \\
+\chi_a^* &= \chi_{\dot{a}}.
+\end{align}
+We also find, using the fact that the Pauli matrices are Hermitian ($\sigma^\dagger = \sigma$), that the dot product of spinors of the same type are Lorentz invariant. E.g.
+\begin{align}
+{\chi'}_a^T {\chi'}^a = \chi_a^T \chi^a = \chi_a^T \tn{\epsilon}{^a^b}\chi_b \\
+{\chi'}_{\dot{a}}^T {\chi'}^{\dot{a}} = \chi_{\dot{a}}^T \chi^{\dot{a}} = \chi_{\dot{a}}^T \tn{\epsilon}{^a^b}\chi_{\dot{b}}.
+\end{align}
+
+We can thus define the following notation for Lorentz transforming Weyl spinors:
+\begin{align}
+\Lambda_{(\frac{1}{2},0)} &=  e^{i \frac{\theta}{2}\sigma + \frac{\phi}{2} \sigma} = \tn{\Lambda}{_a^b}  \\
+\Lambda_{(0, \frac{1}{2})} &=  e^{i \frac{\theta}{2}\sigma - \frac{\phi}{2} \sigma} = \tn{\Lambda}{^{\dot{a}}_{\dot{b}}}.
+\end{align}
+\textbf{[TODO: I do not understand i) the significance (if any) of the left/right position of the indices in this notation; ii) If the spinor metric also raises/lowers indices of the Lorentz transform. Proceed with caution!]} So,
+\begin{align}
+\chi'_R = \chi'^{\dot{a}} = \tn{\Lambda}{^{\dot{a}}_{\dot{b}}} \chi^{\dot{b}} \\
+\chi'_L = \chi'_{a} = \tn{\Lambda}{_a^b} \chi_b. \\
+\end{align}
+
 \newpage
 \bibliography{physics-from-symmetry.bib} 
 
