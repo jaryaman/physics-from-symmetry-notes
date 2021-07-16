@@ -1182,13 +1182,39 @@ We also find, using the fact that the Pauli matrices are Hermitian ($\sigma^\dag
 We can thus define the following notation for Lorentz transforming Weyl spinors:
 \begin{align}
 \Lambda_{(\frac{1}{2},0)} &=  e^{i \frac{\theta}{2}\sigma + \frac{\phi}{2} \sigma} = \tn{\Lambda}{_a^b}  \\
-\Lambda_{(0, \frac{1}{2})} &=  e^{i \frac{\theta}{2}\sigma - \frac{\phi}{2} \sigma} = \tn{\Lambda}{^{\dot{a}}_{\dot{b}}}.
+\Lambda_{(0, \frac{1}{2})} &=  e^{i \frac{\theta}{2}\sigma - \frac{\phi}{2} \sigma} = \tn{\Lambda}{^{\dot{a}}_{\dot{b}}}. \label{eq:weyl-spinor-lt}
 \end{align}
 \textbf{[TODO: I do not understand i) the significance (if any) of the left/right position of the indices in this notation; ii) If the spinor metric also raises/lowers indices of the Lorentz transform. Proceed with caution!]} So,
 \begin{align}
 \chi'_R = \chi'^{\dot{a}} = \tn{\Lambda}{^{\dot{a}}_{\dot{b}}} \chi^{\dot{b}} \\
 \chi'_L = \chi'_{a} = \tn{\Lambda}{_a^b} \chi_b. \\
 \end{align}
+
+\subsection{The $(\frac{1}{2},\frac{1}{2})$ representation}
+Let's denote the object which transforms under this representation as $\tn{v}{_a^{\dot{b}}}$ using Van der Waerden notation. Since the two copies of $SU(2)$ do not commute within the representation (we have a direct sum), they will not interfere with each other and so we can transform the indices separately. We know that, since we have two copies of $\mathfrak{su}(2)$ with $j=1/2$, that $\tn{v}{_a^{\dot{b}}}$ must have four elements, since each copy of $\mathfrak{su}(2)$ must have two associated states (corresponding to $m=\pm 1/2$, see Section~\ref{sec:finite-dim-irr-repr}).
+
+We will assume\footnote{The justification for the assumption by Schwichtenberg was unclear and seemed circular to me, so I omit it.} that the irreducible representation acts on 2$\times$2 Hermitian matrices. This is because 2D Hermitian matrices only have 4 degrees of freedom, which coincides with the number of elements we argued that $\tn{v}{_a^{\dot{b}}}$ must have. Any 2D Hermitian matrix may be decomposed in terms of Pauli matrices which form a basis together with the identity:
+\begin{equation}
+a_0 1 + a_i \sigma_i.
+\end{equation}
+
+
+For convenience, we first work with $\tn{v}{_a_{\dot{b}}}$, and can use the spinor metric to raise the right index later. By decomposing $\tn{v}{_a_{\dot{b}}}$ in terms of Pauli matrices, we have
+\begin{equation}
+\tn{v}{_a_{\dot{b}}} = \begin{pmatrix}
+v_0 + v_3 & v_1 - i v_2 \\
+v_1 + i v_2 & v_0 - v_3
+\end{pmatrix}.
+\end{equation}
+We now observe how this object Lorentz transforms
+\begin{equation}
+\tn{{v'}}{_a_{\dot{b}}} = \tn{\Lambda}{_a^c} \tn{{v}}{_c_{\dot{d}}} \tn{\Lambda}{^{\dot{d}}_{\dot{b}}}
+\end{equation}
+corresponding to (using Eq.\eqref{eq:weyl-spinor-lt})
+\begin{equation}
+v \rightarrow v' = \tn{{v'}}{_a_{\dot{b}}} = \tn{{\left(e^{i \vec{\theta} \frac{\vec{\sigma}}{2} + \vec{\phi} \frac{\vec{\sigma}}{2}} \right)}}{_a^c} \tn{v}{_c_{\dot{d}}} \tn{{\left(e^{i \vec{\theta} \frac{\vec{\sigma}}{2} - \vec{\phi} \frac{\vec{\sigma}}{2}} \right)}}{^{\dot{d}}_{\dot{b}}} 
+\end{equation}
+[\textbf{TODO}: Apparently this is Hermitian but I'm having difficulty proving it. Would somebody buy me Mathematica...] It turns out, after doing this transformation, that you get exactly the same components as a boosted 4-vector. Therefore the $(\frac{1}{2},\frac{1}{2})$ is exactly the same thing as $SO(1,3)$. Furthermore, \textbf{we see that 4-vectors are not fundamental}, and thus there are physical systems which cannot be described by 4-vectors. In this sense, people sometimes call spinors the square root of 4-vectors: in the same way that vectors are square roots of rank-2 tensors.
 
 \newpage
 \bibliography{physics-from-symmetry.bib} 
