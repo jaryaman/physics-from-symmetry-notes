@@ -1,0 +1,188 @@
+% Preamble ==================================================================
+\documentclass[11pt]{article}
+\usepackage{geometry}
+\geometry{verbose,tmargin=2.5cm,bottom= 1.5cm,lmargin=2.5cm,rmargin=2.5cm}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathtools}
+
+\usepackage{tensor}
+\usepackage{cancel}
+\usepackage{wasysym}
+\usepackage{braket}
+
+\usepackage{amsthm} % theorem
+
+\numberwithin{equation}{section}
+
+\usepackage{titlesec,dsfont}
+
+%Format section heading style
+\usepackage{sectsty}
+\sectionfont{\sffamily\bfseries\large}
+\subsectionfont{\sffamily\normalsize\slshape}
+\subsubsectionfont{\sffamily\small\itshape}
+\paragraphfont{\sffamily\small\textbf}
+
+
+%Put period after section number
+\makeatletter
+\def\@seccntformat#1{\csname the#1\endcsname.\quad}
+\makeatother
+
+%Bibliography
+
+
+%Format captions
+\usepackage[ labelsep=period, justification=raggedright, margin=10pt,font={small},labelfont={small,normal,bf,sf}]{caption}
+
+\setlength{\parskip}{0ex} %No space between paragraphs.
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\newcommand\indep{\protect\mathpalette{\protect\independenT}{\perp}}
+\newcommand{\nindep}{\not\!\perp\!\!\!\perp}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+
+%PUT ME LAST--------------------------------------------------
+\usepackage[colorlinks=true
+,urlcolor=blue
+,anchorcolor=blue
+,citecolor=blue
+,filecolor=blue
+,linkcolor=black
+,menucolor=blue
+,linktocpage=true
+,pdfproducer=medialab
+,pdfa=true
+]{hyperref}
+
+\makeatother %Put this last of all
+
+% Symbol definitions
+\newcommand{\defeq}{\coloneqq}
+\renewcommand{\d}[1]{\ensuremath{\operatorname{d}\!{#1}}}
+\newcommand{\deriv}[2]{\frac{\ensuremath{\operatorname{d}\!{#1}}}{\ensuremath{\operatorname{d}\!{#2}}}}
+\newcommand{\derivn}[3]{\frac{\ensuremath{\operatorname{d}^{#1}\!{#2}}}{\ensuremath{\operatorname{d}\!{#3}^{#1}}}}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\tn}[2]{\tensor{#1}{#2}}
+
+% Make theorems bold
+\makeatletter
+\def\th@plain{%
+  \thm@notefont{}% same as heading font
+  \itshape % body font
+}
+\def\th@definition{%
+  \thm@notefont{}% same as heading font
+  \normalfont % body font
+}
+\makeatother
+
+% Theorem definitions
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{defn}{Definition}[section]
+\newtheorem{cor}{Corollary}[section]
+\newtheorem{prop}{Property}[section]
+\newtheorem{rle}{Rule}[section]
+\newtheorem{lma}{Lemma}[section]
+
+\newcommand{\bs}{\boldsymbol}
+
+%Preamble end--------------------------------------------------
+
+
+\begin{document}
+
+
+
+\begin{flushleft}
+\textbf{\Large Possible errata in Physics from Symmetry (Second Edition)}
+\end{flushleft}
+
+\begin{flushleft}
+Author: Juvid Aryaman
+
+Last compiled: \today
+\end{flushleft}
+
+
+\section{$(\frac{1}{2}, \frac{1}{2})$ Representation (p82)}
+
+On p82, Eq.(3.225), we have
+
+\begin{equation}
+v \rightarrow v' = \tn{{v'}}{_a_{\dot{b}}} = \tn{{\left(e^{i \vec{\theta} \frac{\vec{\sigma}}{2} + \vec{\phi} \frac{\vec{\sigma}}{2}} \right)}}{_a^c} \tn{v}{_c_{\dot{d}}} \left(\tn{{\left(e^{-i \vec{\theta} \frac{\vec{\sigma^*}}{2} + \vec{\phi} \frac{\vec{\sigma^*}}{2}} \right)}}{^{\dot{d}}_{\dot{b}}}\right)^T  \nonumber
+\end{equation}
+
+\subsection{Suggested correction}
+
+I suggest this equation should read
+\begin{equation}
+v \rightarrow v' = \tn{{v'}}{_a_{\dot{b}}} = \tn{{\left(e^{i \vec{\theta} \frac{\vec{\sigma}}{2} + \vec{\phi} \frac{\vec{\sigma}}{2}} \right)}}{_a^c} \tn{v}{_c_{\dot{d}}} \tn{{\left(e^{i \vec{\theta} \frac{\vec{\sigma}}{2} - \vec{\phi} \frac{\vec{\sigma}}{2}} \right)}}{^{\dot{d}}_{\dot{b}}}  \label{eq:my-fix}
+\end{equation}
+If Eq.(3.225) is indeed in error, then the error appears to propagate through the rest of Section 3.7.8.
+
+\subsection{Rationale}
+We found in the previous section that dotted and undotted indices transform differently, namely that
+\begin{align}
+\tn{{\chi'}}{^{\dot{a}}} &= \tn{\Lambda}{^{\dot{a}}_{\dot{b}}} \tn{\chi}{^{\dot{b}}} \\
+\tn{\Lambda}{^{\dot{a}}_{\dot{b}}} &= \tn{{\left(e^{i \vec{\theta} \frac{\vec{\sigma}}{2} - \vec{\phi}\frac{\vec{\sigma}}{2}} \right)}}{^{\dot{a}}_{\dot{b}}} \label{eq:right-chiral}
+\end{align}
+(see Eq.(3.219) and Eq.(3.222) from Physics from Symmetry), and also
+\begin{align}
+\tn{{\chi'}}{_a} &= \tn{\Lambda}{_a^b} \tn{\chi}{_b} \\
+\tn{\Lambda}{_a^b} &= \tn{{\left(e^{i \vec{\theta} \frac{\vec{\sigma}}{2} + \vec{\phi}\frac{\vec{\sigma}}{2}} \right)}}{_a^b} \label{eq:left-chiral}
+\end{align}
+(see Eq.(3.220) and Eq.(3.221) from Physics from Symmetry).
+
+I assume that $v'$ may be written explicitly as follows:
+\begin{equation}
+\tn{{v'}}{_a_{\dot{b}}} = \tn{\Lambda}{_a^c} \tn{v}{_c_{\dot{d}}} \tn{\Lambda}{^{\dot{d}}_{\dot{b}}} \label{eq:my-starting-point}
+\end{equation}
+Substituting Eq.\eqref{eq:left-chiral} and Eq.\eqref{eq:right-chiral} into the above equation trivially yields Eq.\eqref{eq:my-fix}.
+
+I believe Eq.\eqref{eq:my-starting-point} and Eq.(3.225) from Physics from Symmetry are incompatible. There is no way to derive the complex conjugate $e^{+\vec{\phi} \frac{\vec{\sigma^*}}{2}}$ from $e^{- \vec{\phi}\frac{\vec{\sigma}}{2}}$ in the (dotted) right-chiral terms of the transformation.
+
+\section{Spinors and Charge Conjugation (p86)}
+
+On p86, Eq.(3.243) reads
+\begin{equation}
+\tilde{\Psi} \rightarrow \tilde{\Psi}' = \begin{pmatrix}
+e^{-\frac{\vec{\theta}}{2} \vec{\sigma}} & 0 \\
+0 & e^{\frac{\vec{\theta}}{2} \vec{\sigma}}
+\end{pmatrix} \begin{pmatrix}
+\chi_L \\
+\chi_R
+\end{pmatrix}
+\end{equation}
+
+\subsection{Suggested correction}
+I suggest this equation should read
+\begin{equation}
+\tilde{\Psi} \rightarrow \tilde{\Psi}' = \begin{pmatrix}
+e^{-\frac{\vec{\theta}}{2} \vec{\sigma}} & 0 \\
+0 & e^{\frac{\vec{\theta}}{2} \vec{\sigma}}
+\end{pmatrix} \begin{pmatrix}
+\chi_R \\
+\chi_L
+\end{pmatrix}
+\end{equation}
+
+\subsection{Rationale}
+$\tilde{\Psi}$ is defined as an object where the chirality of each component is naively flipped Eq.(3.241)
+\begin{equation}
+\tilde{\Psi} = \begin{pmatrix}
+\chi_R \\
+\chi_L
+\end{pmatrix}.
+\end{equation}
+\noindent Therefore, a Lorentz boost should operate on the same initial object. My suggestion for $\tilde{\Psi}$ would indeed not transform like a Dirac spinor under $\Lambda_{(\frac{1}{2},0) \oplus (0, \frac{1}{2})}$; it would transform under $\Lambda_{(0, \frac{1}{2},0) \oplus (\frac{1}{2}, 0)}$.
+
+\newpage
+
+\end{document}
