@@ -1008,7 +1008,7 @@ Exponentiation of these generators through $\Lambda = e^{i \phi K}$ yield
 
 We can derive the other components of the Lorentz group by operating the parity and time reversal operators Eq.\eqref{eq:parity-time-reversal-operators} on each index of the generators. We find
 \begin{align}
-K_i \underbrace{\rightarrow}_P - K_i \\
+K_i \underbrace{\rightarrow}_P - K_i \label{eq:tfm-boost-parity} \\
 K_i \underbrace{\rightarrow}_T - K_i.
 \end{align}
 A similar exercise can be done for transformations involving only rotations in space, and we find that the generators $J$ of these transformations are invariant under parity and time reversal.
@@ -1092,7 +1092,7 @@ R_x(\theta) = \begin{pmatrix}
 i \sin(\theta/2) & \cos(\theta/2)
 \end{pmatrix}. \label{eq:rotation-left-chiral-lorentz-tfm}
 \end{equation}
-Contrast this to the 2D rotation matrix in Eq.\eqref{eq:2d-rotation-matrix}. It is clear that the object which such transformations operate on \textbf{are not} simple two-dimensional vectors, or indeed even 4-vectors of Minkowski space. The \textbf{two-component} object  this representation acts upon are called \textbf{left-chiral spinors}.
+Contrast this to the 2D rotation matrix in Eq.\eqref{eq:2d-rotation-matrix}: we see that \textbf{we must rotate this object by $4\pi$ to get an identity transform}! It is clear that the object which such transformations operate on \textbf{are not} simple two-dimensional vectors, or indeed even 4-vectors of Minkowski space. The \textbf{two-component} object  this representation acts upon are called \textbf{left-chiral spinors}.
 \begin{defn}[Left-chiral spinor]
 Is an object that transforms under the $(\frac{1}{2},0)$ representation of the Lorentz group. We denote them as 
 \begin{equation}
@@ -1214,7 +1214,77 @@ corresponding to (using Eq.\eqref{eq:weyl-spinor-lt})
 \begin{equation}
 v \rightarrow v' = \tn{{v'}}{_a_{\dot{b}}} = \tn{{\left(e^{i \vec{\theta} \frac{\vec{\sigma}}{2} + \vec{\phi} \frac{\vec{\sigma}}{2}} \right)}}{_a^c} \tn{v}{_c_{\dot{d}}} \tn{{\left(e^{i \vec{\theta} \frac{\vec{\sigma}}{2} - \vec{\phi} \frac{\vec{\sigma}}{2}} \right)}}{^{\dot{d}}_{\dot{b}}} 
 \end{equation}
-[\textbf{TODO}: Apparently this is Hermitian but I'm having difficulty proving it. Would somebody buy me Mathematica...] It turns out, after doing this transformation, that you get exactly the same components as a boosted 4-vector. Therefore the $(\frac{1}{2},\frac{1}{2})$ is exactly the same thing as $SO(1,3)$. Furthermore, \textbf{we see that 4-vectors are not fundamental}, and thus there are physical systems which cannot be described by 4-vectors. In this sense, people sometimes call spinors the square root of 4-vectors: in the same way that vectors are square roots of rank-2 tensors.
+[\textbf{TODO: Apparently this is Hermitian but I'm having difficulty proving it... The $i$ in the exponent makes it look very not Hermitian to me...}] It turns out, after doing this transformation, that you get exactly the same components as a boosted 4-vector. Therefore the $(\frac{1}{2},\frac{1}{2})$ representation of $SU(2)$ is exactly the same thing as $SO(1,3)$. Furthermore, \textbf{we see that 4-vectors are not fundamental}, and thus there are physical systems which cannot be described by 4-vectors. In this sense, people sometimes call spinors the square root of 4-vectors: in the same way that vectors are square roots of rank-2 tensors.
+
+\subsection{Dirac and Majorana spinors}
+We know from Eq.\eqref{eq:tfm-boost-parity} that boosts obtain a sign change under parity transformations. Furthermore, by definition of the generators of the Lorentz group Eq.\eqref{eq:complexification-lie-algebra-lorentz-group} that parity transformations therefore flip $N^+ \leftrightarrow N^-$. This is the motivation for calling the two kinds of Weyl spinor left- and right-handed.
+
+\begin{defn}[Dirac spinor]
+A Dirac spinor is a concatenation of a left-chiral Weyl spinor with an \textbf{independent} right-chiral Weyl spinor
+\begin{equation}
+\Psi = \begin{pmatrix}
+\chi_L \\
+\xi_R
+\end{pmatrix} = 
+\begin{pmatrix}
+\chi_a \\
+\xi^{\dot{a}}
+\end{pmatrix}
+\end{equation}
+where the independence of the two components is denoted by the different symbols $\chi$ and $\xi$.
+\end{defn}
+
+Dirac spinors transform simply by constructing a block-diagonal matrix of transformations for the $(\frac{1}{2},0)$ and $(0, \frac{1}{2})$ representations, since the two constituent Weyl spinors transform independently:
+\begin{equation}
+\Psi \rightarrow \Psi' = \Lambda_{(\frac{1}{2},0) \oplus (0, \frac{1}{2})} \Psi = \begin{pmatrix}
+\Lambda_{(\frac{1}{2},0)} & 0 \\
+0 & \Lambda_{(0, \frac{1}{2})} 
+\end{pmatrix} \begin{pmatrix}
+\chi_L \\
+\xi_R
+\end{pmatrix}.
+\end{equation}
+
+\begin{defn}[Majorana spinor]
+A Majorana spinor is a special case of a Dirac spinor
+\begin{equation}
+\Psi = \begin{pmatrix}
+\chi_L \\
+\chi_R
+\end{pmatrix} = 
+\begin{pmatrix}
+\chi_a \\
+\chi^{\dot{a}}
+\end{pmatrix}.
+\end{equation}
+\end{defn}
+
+If a transformation which operates on a Dirac spinor is invariant to parity, then we will be able to say that that transformation is invariant to parity. Hence, it is useful to observe how Dirac spinors transform under parity. Since parity transforms result in $N^+ \leftrightarrow N^-$, then
+\begin{equation}
+\left(\frac{1}{2}, 0\right) \underbrace{\leftrightarrow}_{P} \left(0, \frac{1}{2}\right).
+\end{equation}
+So, instead of transforming under the $(\frac{1}{2},0) \oplus (0, \frac{1}{2})$ representation, a parity transformed Dirac spinor transforms under the $(0, \frac{1}{2}) \oplus \frac{1}{2},0)$ representation
+\begin{equation}
+\Psi^P \rightarrow (\Psi^P)' = \Lambda_{(0, \frac{1}{2}) \oplus (\frac{1}{2},0)} \Psi^P = \begin{pmatrix}
+\Lambda_{(0, \frac{1}{2})} & 0 \\
+0 & \Lambda_{(\frac{1}{2},0)} 
+\end{pmatrix} \begin{pmatrix}
+\xi_R \\
+\chi_L
+\end{pmatrix}.
+\end{equation}
+Hence, a parity transformation has the following effect on a Dirac spinor
+\begin{equation}
+\Psi = \begin{pmatrix}
+\chi_L \\
+\xi_R
+\end{pmatrix} \underbrace{\rightarrow}_P
+\Psi^P = \begin{pmatrix}
+\xi_R \\
+\chi_L
+\end{pmatrix}.
+\end{equation}
+Note that this is \textbf{not} the same as $\chi_L \rightarrow \chi_R$, which we discuss next. 
 
 \newpage
 \bibliography{physics-from-symmetry.bib} 
