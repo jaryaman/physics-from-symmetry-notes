@@ -1056,12 +1056,12 @@ In Section~\ref{sec:finite-dim-irr-repr} we found that we can label each irreduc
 
 Finally, note that it is conventional to write the Lie algebra of the Lorentz group more compactly as 
 \begin{align}
-J_i &= \frac{1}{2} \epsilon_{ijk} M_{jk} \\
+J_i &= \frac{1}{2} \epsilon_{ijk} M_{jk} \label{eq:defn-compact-lorentz-lie-algebra-notation} \\
 K_i &= M_{0i} 
 \end{align}
 where
 \begin{equation}
-[\tn{M}{_\mu_\nu},\tn{M}{_\rho_\sigma}] = i(\tn{\eta}{_\mu _\rho} \tn{M}{_\nu _\sigma} - \tn{\eta}{_\mu _\sigma} \tn{M}{_\nu _\rho} - \tn{\eta}{_\nu _\rho} \tn{M}{_\mu _\sigma} + \tn{\eta}{_\nu _\sigma} \tn{M}{_\mu _\rho}).
+[\tn{M}{_\mu_\nu},\tn{M}{_\rho_\sigma}] = i(\tn{\eta}{_\mu _\rho} \tn{M}{_\nu _\sigma} - \tn{\eta}{_\mu _\sigma} \tn{M}{_\nu _\rho} - \tn{\eta}{_\nu _\rho} \tn{M}{_\mu _\sigma} + \tn{\eta}{_\nu _\sigma} \tn{M}{_\mu _\rho}). \label{eq:lorentz-algebra}
 \end{equation}
 
 \subsection{Finite dimensional irreducible representations of the Lorentz group}
@@ -1263,7 +1263,7 @@ If a transformation which operates on a Dirac spinor is invariant to parity, the
 \begin{equation}
 \left(\frac{1}{2}, 0\right) \underbrace{\leftrightarrow}_{P} \left(0, \frac{1}{2}\right).
 \end{equation}
-So, instead of transforming under the $(\frac{1}{2},0) \oplus (0, \frac{1}{2})$ representation, a parity transformed Dirac spinor transforms under the $(0, \frac{1}{2}) \oplus \frac{1}{2},0)$ representation
+So, instead of transforming under the $(\frac{1}{2},0) \oplus (0, \frac{1}{2})$ representation, a parity transformed Dirac spinor transforms under the $(0, \frac{1}{2}) \oplus (\frac{1}{2},0)$ representation
 \begin{equation}
 \Psi^P \rightarrow (\Psi^P)' = \Lambda_{(0, \frac{1}{2}) \oplus (\frac{1}{2},0)} \Psi^P = \begin{pmatrix}
 \Lambda_{(0, \frac{1}{2})} & 0 \\
@@ -1306,6 +1306,60 @@ we define the charge conjugate spinor as
 
 Note that a charge conjugate spinor still Lorentz transforms like a Dirac spinor, according to $\Lambda_{(\frac{1}{2},0) \oplus (0, \frac{1}{2})}$. We show later that charge conjugation flips \textbf{all} labels used to describe fundamental particles (not just electric charge). We can see, for example, that a left-chiral spinor would be transformed into a right-chiral spinor under charge conjugation. 
 
+\subsection{Infinite-dimensional representations}
+So far we've considered transformations on objects $\Phi_a$ of the form
+\begin{equation}
+\Phi_a \rightarrow \Phi_a' = M_{ab}(\Lambda)\Phi_b
+\end{equation}
+where $M_{ab}$ denotes a particular finite-dimensional representation of the Lorentz transformation $\Lambda$. However, objects in physics dynamically change with space and time. Therefore, our objects must become functions of coordinates $\Phi = \Phi(x)$, where the coordinates themselves are also affected by Lorentz transformations. Hence\footnote{Though most authors use the Wigner convention for symmetry operators: $\Phi_a'(x) = M_{ab}(\Lambda)\Phi_b(\Lambda^{-1} x)$}
+\begin{equation}
+\Phi_a(x) \rightarrow \Phi_a'(x) = M_{ab}(\Lambda)\Phi_b(\Lambda x).
+\end{equation}
+Our transformations therefore consist of two parts. One part, represented by a finite-dimensional representation, acting on $\Phi_a$; a second part that transforms the spacetime coordinates. We therefore need an infinite number of basis functions to decompose the object $\Phi_a(x)$ -- which is the idea behind Fourier transforms. 
+
+\begin{defn}[Infinite-dimensional representation of the Lorentz group]
+The generator of the infinite-dimensional representation of the Lorentz group is given by differential operators
+\begin{equation}
+\tn{{M^{\text{inf}}}}{_\mu_\nu} = i(x^\mu \partial^\nu - x^\nu \partial^\mu)
+\end{equation}
+\end{defn}
+Note that we can plug $\tn{{M^{\text{inf}}}}{_\mu_\nu}$ into Eq.\eqref{eq:lorentz-algebra} to show that it does indeed satisfy the definition of the Lorentz algebra.
+
+The complete transformation is then a combination of a finite-dimensional representation $\tn{{M^{\text{fin}}}}{_\mu_\nu}$ and an infinite-dimensional transformation
+\begin{equation}
+\Phi_a(x) \rightarrow \tn{{\left( e^{-\frac{i}{2} \omega^{\mu \nu} \tn{{M^{\text{fin}}}}{_\mu_\nu}} \right)}}{_a^b}  e^{-\frac{i}{2} \omega^{\mu \nu} \tn{{M^{\text{inf}}}}{_\mu_\nu}} \Phi_b(x)
+\end{equation}
+where the extent of rotation $\theta_i$ and boost $\phi_i$ correspond to
+\begin{align}
+\theta_i &= \frac{1}{2}\tn{\epsilon}{_i_j_k} \tn{\omega}{_j_k} \\
+\phi_i &= \tn{\omega}{_0_i}
+\end{align}
+(see Eq.\eqref{eq:defn-compact-lorentz-lie-algebra-notation}). Since the matrices $ \tn{{M^{\text{fin}}}}{_\mu_\nu}$ are finite dimensional and constant, we can [apparently] put the two components together:
+\begin{defn}[Field representation of the Lorentz group]
+The field representation of the Lorentz group is given by:
+\begin{align}
+\Phi_a(x) &\rightarrow \tn{{\left( e^{-\frac{i}{2} \omega^{\mu \nu} \tn{M}{_\mu_\nu}} \right)}}{_a^b}   \Phi_b(x) \\
+\tn{M}{_\mu_\nu} &= \tn{{M^{\text{fin}}}}{_\mu_\nu} + \tn{{M^{\text{inf}}}}{_\mu_\nu}.
+\end{align}
+\end{defn}
+
+\section{The Poincar\'{e} group}
+
+We are now in a position to discuss \textbf{translations}. Translations to not mix components, so we do not need a finite-dimensional representation of the group of translations. The Lorentz group plus the group of translations is called the \textbf{Poincar\'{e} group}. A one-dimensional infinitesimal translation of a function along the $x$-axis is given by
+\begin{equation}
+\Phi(x) \rightarrow \Phi(x+\epsilon) = \Phi(x) + \partial_x \Phi(x) \epsilon
+\end{equation}
+(which is the Taylor expansion of $\Phi(x+\epsilon)$ to first order). In physics, it is convenient to define an $i$ with the generator
+\begin{align}
+P_i &\equiv -i \partial_i \\
+P_0 &\equiv i \partial_0 \\
+\implies P_\mu &= i \eta^{\mu \nu} \partial_\nu.
+\end{align}
+Hence an arbitrary finite translation of an object by $a^i$ is given by
+\begin{equation}
+\Phi(x) \rightarrow \Phi(x+a) = e^{-ia^iP_i}\Phi(x) = e^{-a^i\partial_i}\Phi(x).
+\end{equation}
+Writing this as a Taylor expansion simply yields the Taylor expansion of $\Phi(x+a)$. To translate to another point in time we use $P_0$.
 
 
 \newpage
