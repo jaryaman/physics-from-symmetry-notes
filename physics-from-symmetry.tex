@@ -1343,7 +1343,7 @@ The field representation of the Lorentz group is given by:
 \end{align}
 \end{defn}
 
-\section{The Poincar\'{e} group}
+\subsection{The Poincar\'{e} group}
 
 We are now in a position to discuss \textbf{translations}. Translations to not mix components, so we do not need a finite-dimensional representation of the group of translations. The Lorentz group plus\footnote{Technically, the Poincar\'{e} group is the semi-direct sum of the Lorentz group and translations.} the group of translations is called the \textbf{Poincar\'{e} group}. A one-dimensional infinitesimal translation of a function along the $x$-axis is given by
 \begin{equation}
@@ -1388,7 +1388,15 @@ W^\mu &= \frac{1}{2} \epsilon^{\mu \nu \rho \sigma} P_\nu M_{\rho \sigma}
 \end{align}
 where $W^\mu$ is called a \textbf{Pauli-Lubanski four-vector}. It can be shown that $j \equiv j_1 + j_2$ can be used as a label (where each $j_i$ corresponds to a representation of $SU(2)$), which we refer to as the \textbf{spin} $j$ representation. $W^\mu$ describes spin states of moving particles. So, overall, each representation is labelled by two scalar values: $m$ and $j$. $m$ can take arbitrary values whereas $j$ is restricted to half-integers.
 
+\subsection{Elementary particles}
+The labels for the irreducible representations of the double cover of the Poincar\'{e} group, mass $m$ and spin $j$, are how elementary particles are labelled in physics. More labels, called charges, will follow later from internal symmetries\footnote{An internal symmetry is a transformation acting only on the fields, therefore not transforming spacetime points, and leaving the lagrangian or the physical results invariant.}: electric charge, weak isospin, and color charge. 
 
+The particles of the standard model are one of:
+\begin{itemize}
+\item Spin 0, described by an object $\Phi$, called a \textbf{scalar}, that transforms according to the $(0,0)$ representation of the Lorentz group, called the \textbf{spin $0$ representation}, or scalar representation. The Higgs particle is described by a scalar field.
+\item Spin $\frac{1}{2}$, described by an object $\Psi$, called a \textbf{spinor}, transforms according to the $(\frac{1}{2}, 0) \oplus (0, \frac{1}{2})$ representation, called the \textbf{spin $\frac{1}{2}$ representation}, or spinor representation. Electrons and quarks are described by spinors.
+\item Spin 1, is described by an object $A$, called a \textbf{vector}, that transforms according to the $(\frac{1}{2}, \frac{1}{2})$ representation, called the \textbf{spin 1 representation}, or vector representation. Photons are described by vectors.
+\end{itemize}
 
 \newpage
 \bibliography{physics-from-symmetry.bib} 
