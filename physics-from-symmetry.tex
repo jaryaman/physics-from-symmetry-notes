@@ -1074,7 +1074,7 @@ N_i^+ = N_i^- = 0
 \end{equation}
 corresponding to the identity. The $(0,0)$ representation therefore acts on objects, called \textbf{Lorentz scalars}, that do not change under Lorentz transformations. This is called the \textbf{scalar representation}. Examples of Lorentz scalars turn out to be spacetime distance between two events; the length of 4-velocities; and the Ricci curvature in a point in spacetime (from General relativity). 
 
-\subsection{The $(\frac{1}{2},0)$ representation}
+\subsubsection{The $(\frac{1}{2},0)$ representation}
 In this representation, we use the 2-dimensional representation for one copy of $SU(2)$ $N_i^+ = \sigma_i/2$ (see Eq.\eqref{eq:generator-su2-lie-algebra-2d}), and the 1-dimensional representation for the other $N_i^-=0$. Using Eq.\eqref{eq:complexification-lie-algebra-lorentz-group} we find
 \begin{align}
 J_i &= \frac{\sigma_i}{2} \\
@@ -1106,7 +1106,7 @@ Is an object that transforms under the $(\frac{1}{2},0)$ representation of the L
 
 Notice how the factor of $\theta/2$ in Eq.\eqref{eq:rotation-left-chiral-lorentz-tfm} means that rotation of a spinor by $2\pi$ gives a minus sign. A spinor must be rotated by $4\pi$ to get the identity transform. We saw from the previous section that the lowest-dimensional representation of the Lorentz group is always the identity, and therefore trivial. Hence, we may say that \textbf{a spinor is the simplest object that can be Lorentz-transformed} \citep{Steane13}.
 
-\subsection{The $(0, \frac{1}{2})$ representation}
+\subsubsection{The $(0, \frac{1}{2})$ representation}
 This follows identically to the previous section, except with $N_i^+=0$ and $N_i^- = \sigma_i/2$. 
 \begin{align}
 J_i &= \frac{\sigma_i}{2} \\
@@ -1129,7 +1129,7 @@ Is an object that transforms under the $(0, \frac{1}{2})$ representation of the 
 \end{defn}
 \noindent The generic name for left- and right-chiral spinors is \textbf{Weyl spinors}.
 
-\subsection{Van der Waerden Notation}
+\subsubsection{Van der Waerden Notation}
 
 Van der Waerden Notation introduces dotted indices to distinguish chirality.
 
@@ -1190,7 +1190,7 @@ We can thus define the following notation for Lorentz transforming Weyl spinors:
 \chi'_L = \chi'_{a} = \tn{\Lambda}{_a^b} \chi_b. \\
 \end{align}
 
-\subsection{The $(\frac{1}{2},\frac{1}{2})$ representation}
+\subsubsection{The $(\frac{1}{2},\frac{1}{2})$ representation}
 Let's denote the object which transforms under this representation as $\tn{v}{_a^{\dot{b}}}$ using Van der Waerden notation. Since the two copies of $SU(2)$ do not commute within the representation (we have a direct sum), they will not interfere with each other and so we can transform the indices separately. We know that, since we have two copies of $\mathfrak{su}(2)$ with $j=1/2$, that $\tn{v}{_a^{\dot{b}}}$ must have four elements, since each copy of $\mathfrak{su}(2)$ must have two associated states (corresponding to $m=\pm 1/2$, see Section~\ref{sec:finite-dim-irr-repr}).
 
 We will assume\footnote{The justification for the assumption by Schwichtenberg was unclear and seemed circular to me, so I omit it.} that the irreducible representation acts on 2$\times$2 Hermitian matrices. This is because 2D Hermitian matrices only have 4 degrees of freedom, which coincides with the number of elements we argued that $\tn{v}{_a^{\dot{b}}}$ must have. Any 2D Hermitian matrix may be decomposed in terms of Pauli matrices which form a basis together with the identity:
@@ -1216,7 +1216,7 @@ v \rightarrow v' = \tn{{v'}}{_a_{\dot{b}}} = \tn{{\left(e^{i \vec{\theta} \frac{
 \end{equation}
 [\textbf{TODO: Apparently this is Hermitian but I'm having difficulty proving it... The $i$ in the exponent makes it look very not Hermitian to me...}] It turns out, after doing this transformation, that you get exactly the same components as a boosted 4-vector. Therefore the $(\frac{1}{2},\frac{1}{2})$ representation of $SU(2)$ is exactly the same thing as $SO(1,3)$. Furthermore, \textbf{we see that 4-vectors are not fundamental}, and thus there are physical systems which cannot be described by 4-vectors. In this sense, people sometimes call spinors the square root of 4-vectors: in the same way that vectors are square roots of rank-2 tensors.
 
-\subsection{Dirac and Majorana spinors}
+\subsubsection{Dirac and Majorana spinors}
 We know from Eq.\eqref{eq:tfm-boost-parity} that boosts obtain a sign change under parity transformations. Furthermore, by definition of the generators of the Lorentz group Eq.\eqref{eq:complexification-lie-algebra-lorentz-group} that parity transformations therefore flip $N^+ \leftrightarrow N^-$. This is the motivation for calling the two kinds of Weyl spinor left- and right-handed.
 
 \begin{defn}[Dirac spinor]
@@ -1286,7 +1286,7 @@ Hence, a parity transformation has the following effect on a Dirac spinor
 \end{equation}
 Note that this is \textbf{not} the same as $\chi_L \rightarrow \chi_R$, which we discuss next. 
 
-\subsection{Spinor charge conjugation}
+\subsubsection{Spinor charge conjugation}
 \begin{defn}
 Given a Dirac spinor $\Psi$
 \begin{equation}
@@ -1306,7 +1306,7 @@ we define the charge conjugate spinor as
 
 Note that a charge conjugate spinor still Lorentz transforms like a Dirac spinor, according to $\Lambda_{(\frac{1}{2},0) \oplus (0, \frac{1}{2})}$. We show later that charge conjugation flips \textbf{all} labels used to describe fundamental particles (not just electric charge). We can see, for example, that a left-chiral spinor would be transformed into a right-chiral spinor under charge conjugation. 
 
-\subsection{Infinite-dimensional representations}
+\subsection{Infinite-dimensional representations of the Lorentz group}
 So far we've considered transformations on objects $\Phi_a$ of the form
 \begin{equation}
 \Phi_a \rightarrow \Phi_a' = M_{ab}(\Lambda)\Phi_b
