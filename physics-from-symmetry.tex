@@ -1345,7 +1345,7 @@ The field representation of the Lorentz group is given by:
 
 \section{The Poincar\'{e} group}
 
-We are now in a position to discuss \textbf{translations}. Translations to not mix components, so we do not need a finite-dimensional representation of the group of translations. The Lorentz group plus the group of translations is called the \textbf{Poincar\'{e} group}. A one-dimensional infinitesimal translation of a function along the $x$-axis is given by
+We are now in a position to discuss \textbf{translations}. Translations to not mix components, so we do not need a finite-dimensional representation of the group of translations. The Lorentz group plus\footnote{Technically, the Poincar\'{e} group is the semi-direct sum of the Lorentz group and translations.} the group of translations is called the \textbf{Poincar\'{e} group}. A one-dimensional infinitesimal translation of a function along the $x$-axis is given by
 \begin{equation}
 \Phi(x) \rightarrow \Phi(x+\epsilon) = \Phi(x) + \partial_x \Phi(x) \epsilon
 \end{equation}
@@ -1360,6 +1360,34 @@ Hence an arbitrary finite translation of an object by $a^i$ is given by
 \Phi(x) \rightarrow \Phi(x+a) = e^{-ia^iP_i}\Phi(x) = e^{-a^i\partial_i}\Phi(x).
 \end{equation}
 Writing this as a Taylor expansion simply yields the Taylor expansion of $\Phi(x+a)$. To translate to another point in time we use $P_0$.
+
+The Lie algebra of the Poincar\'{e} group is
+\begin{align}
+[J_i, J_j] = i \epsilon_{ijk}J_k \\
+[J_i, K_j] = i \epsilon_{ijk} K_k \\
+[K_i, K_j] = -i \epsilon_{ijk} J_k \\
+[J_i, P_j] = i \epsilon_{ijk} P_k \\
+[J_i, P_0] = 0 \\
+[K_i, P_j] = i \delta_{ij} P_0 \\
+[K_i, P_0] = -i P_i.
+\end{align}
+More succinctly, along with Eq.\eqref{eq:lorentz-algebra} we have the additional commutation relations
+\begin{align}
+[P_\mu, P_\nu] &= 0 \\
+[\tn{M}{_\mu_\nu}, P_\rho] &= i (\tn{\eta}{_\mu_\rho} P_\nu - \tn{\eta}{_\nu_\rho}P_\mu)
+\end{align}
+
+It turns out that the Poincar\'{e} group has two Casimir operators. The first one is
+\begin{equation}
+P_\mu P^\mu \defeq m^2.
+\end{equation}
+We will find out later that $m$ coincides with the \textbf{mass} of particles. The second Casimir operator is
+\begin{align}
+W_\mu & W^\mu  \\
+W^\mu &= \frac{1}{2} \epsilon^{\mu \nu \rho \sigma} P_\nu M_{\rho \sigma}
+\end{align}
+where $W^\mu$ is called a \textbf{Pauli-Lubanski four-vector}. It can be shown that $j \equiv j_1 + j_2$ can be used as a label (where each $j_i$ corresponds to a representation of $SU(2)$), which we refer to as the \textbf{spin} $j$ representation. $W^\mu$ describes spin states of moving particles. So, overall, each representation is labelled by two scalar values: $m$ and $j$. $m$ can take arbitrary values whereas $j$ is restricted to half-integers.
+
 
 
 \newpage
