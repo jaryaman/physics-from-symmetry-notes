@@ -8,6 +8,7 @@
 \usepackage{amssymb}
 \usepackage{enumitem}
 \usepackage{mathtools}
+\usepackage{mathrsfs}
 
 \usepackage{tensor}
 \usepackage{cancel}
@@ -66,6 +67,7 @@
 % Symbol definitions
 \newcommand{\defeq}{\coloneqq}
 \renewcommand{\d}[1]{\ensuremath{\operatorname{d}\!{#1}}}
+\newcommand{\dpow}[2]{\ensuremath{\operatorname{d}^{#2}\!{#1}}}
 \newcommand{\deriv}[2]{\frac{\ensuremath{\operatorname{d}\!{#1}}}{\ensuremath{\operatorname{d}\!{#2}}}}
 \newcommand{\derivn}[3]{\frac{\ensuremath{\operatorname{d}^{#1}\!{#2}}}{\ensuremath{\operatorname{d}\!{#3}^{#1}}}}
 \DeclareMathOperator{\diag}{diag}
@@ -167,7 +169,7 @@ for \textbf{any} pair of events (which are causally connected, although how this
 \subsection{Einstein notation}
 Moving from left to right, the first index denotes a row, the second index denotes a column, and so on for higher-order tensors. Hence
 \begin{equation}
-(\textbf{A})_{ij} \defeq \tensor{A}{^i_j}
+(\boldsymbol{A})_{ij} \defeq \tensor{A}{^i_j}
 \end{equation}
 where the right hand side is Einstein notation, and the left hand side is usual matrix element notation. 
 
@@ -187,7 +189,7 @@ u^i = \tensor{A}{^i_j} v^j.
 
 \paragraph{Matrix multiplication} For a product of two matrices 
 \begin{equation}
-\tensor{C}{^i_k} = \tensor{A}{^i_j} \tensor{A}{^j_k}  \iff  (\textbf{C})_{ik} = (\textbf{AB})_{ik}.
+\tensor{C}{^i_k} = \tensor{A}{^i_j} \tensor{A}{^j_k}  \iff  (\boldsymbol{C})_{ik} = (\boldsymbol{AB})_{ik}.
 \end{equation}
 The upstairs/downstairs-ness of this equation is irrelevant: what matters is the left/right \textbf{ordering} of the indices, as well as which indices are repeated. For example
 \begin{equation}
@@ -196,7 +198,7 @@ The upstairs/downstairs-ness of this equation is irrelevant: what matters is the
 
 \paragraph{Transpose} The transpose of a matrix is written as
 \begin{equation}
-(\textbf{B}^T)_{ij} \defeq (\textbf{B})_{ji} =  \tensor{B}{^j_i} \label{eq:transpose-einstein-notation}
+(\boldsymbol{B}^T)_{ij} \defeq (\boldsymbol{B})_{ji} =  \tensor{B}{^j_i} \label{eq:transpose-einstein-notation}
 \end{equation}
 So, for example
 \begin{equation}
@@ -1397,6 +1399,45 @@ The particles of the standard model are one of:
 \item Spin $\frac{1}{2}$, described by an object $\Psi$, called a \textbf{spinor}, transforms according to the $(\frac{1}{2}, 0) \oplus (0, \frac{1}{2})$ representation, called the \textbf{spin $\frac{1}{2}$ representation}, or spinor representation. Electrons and quarks are described by spinors.
 \item Spin 1, is described by an object $A$, called a \textbf{vector}, that transforms according to the $(\frac{1}{2}, \frac{1}{2})$ representation, called the \textbf{spin 1 representation}, or vector representation. Photons are described by vectors.
 \end{itemize}
+
+\section{The framework: field theory}
+The underlying idea of field theory is that Nature minimizes \textit{something}. This something must be Lorentz invariant (otherwise we would get different equations of motion for fields for different observers). It will turn out that this \textit{something} is the simplest possible choice of Lorentz invariant.
+
+\subsection{The least action principle}
+\begin{defn}[Action (classical mechanics)]
+The action of a physical system $S$ under classical mechanics is defined as
+\begin{equation}
+S[q(t)] = \int_{t_1}^{t_2} \mathcal{L}(q(t), \dot{q}(t), t) \d{t}
+\end{equation}
+where $q(t)$ is a position vector with some finite number of degrees of freedom, and $\mathcal{L}$ is called the \textbf{Lagrangian}.
+\end{defn}
+
+Note that, in some theories we will go on to consider, we cannot derive a Lorentz-invariant theory by only considering up to the first-order derivative of $q(t)$ and will have to go to second order. \textbf{Ostrogradsky instability} prevents us from considering theories with more than two time derivatives, since they correspond to Hamiltonians unbounded from below. It is also interesting to note that a theory with an infinite number of derivatives would allow a non-local theory\footnote{A non-local theory is one which admits interactions of the form $\Phi(x)\Phi(x-h)$ for some arbitrary distance $h$}. Furthermore, in order to get a free (non-interacting) theory of particles/fields, the Lagrangian must stop at the lowest-order non-trivial derivative.
+
+\begin{defn}[Least action principle]
+The principle of least action states that the equations of motion correspond to
+\begin{equation}
+\delta S = 0
+\end{equation}
+where $\delta$ means a \textit{small} change: meaning that the action is stationary to first order for sufficiently short, finite segments in the path.
+\end{defn}
+
+\begin{defn}[Lagrangian density]
+Define the Lagrangian density $\mathscr{L}$ as
+\begin{equation}
+\mathcal{L} = \int \mathscr{L} \dpow{x}{3}
+\end{equation}
+\end{defn}
+
+In \textbf{field theories}, we do not use the position/momentum of particles to derive equations of motion, but instead fields $\Phi(\vec{x},t)$, where the action becomes
+\begin{defn}[Action (field theory)]
+The action of a physical system $S$ under a field theory is defined as
+\begin{equation}
+S[q(t)] = \int \mathscr{L}(\Phi(\vec{x}, t), \partial_{\mu}\Phi(\vec{x}, t), \vec{x}, t) \dpow{x}{4}. \label{eq:action-field-theory}
+\end{equation}
+where $\Phi(\vec{x}, t)$ is a field.
+\end{defn}
+\noindent Notice that Eq.\eqref{eq:action-field-theory} treats space and time on an equal footing, since fields vary over both space and time. In contrast, for classical mechanics, we parametrized the dynamics of our particle with time only: $q(t)$ and $\dot{q}(t)$. 
 
 \newpage
 \bibliography{physics-from-symmetry.bib} 
