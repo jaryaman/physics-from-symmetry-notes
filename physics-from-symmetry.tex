@@ -69,6 +69,7 @@
 \renewcommand{\d}[1]{\ensuremath{\operatorname{d}\!{#1}}}
 \newcommand{\dpow}[2]{\ensuremath{\operatorname{d}^{#2}\!{#1}}}
 \newcommand{\deriv}[2]{\frac{\ensuremath{\operatorname{d}\!{#1}}}{\ensuremath{\operatorname{d}\!{#2}}}}
+\newcommand{\pderiv}[2]{\frac{\ensuremath{\partial}{#1}}{\ensuremath{\partial}{#2}}}
 \newcommand{\derivn}[3]{\frac{\ensuremath{\operatorname{d}^{#1}\!{#2}}}{\ensuremath{\operatorname{d}\!{#3}^{#1}}}}
 \DeclareMathOperator{\diag}{diag}
 \DeclareMathOperator{\tr}{tr}
@@ -1433,11 +1434,43 @@ In \textbf{field theories}, we do not use the position/momentum of particles to 
 \begin{defn}[Action (field theory)]
 The action of a physical system $S$ under a field theory is defined as
 \begin{equation}
-S[q(t)] = \int \mathscr{L}(\Phi(\vec{x}, t), \partial_{\mu}\Phi(\vec{x}, t), \vec{x}, t) \dpow{x}{4}. \label{eq:action-field-theory}
+S[\Phi(\vec{x}, t)] = \int \mathscr{L}(\Phi(\vec{x}, t), \partial_{\mu}\Phi(\vec{x}, t), \vec{x}, t) \dpow{x}{4}. \label{eq:action-field-theory}
 \end{equation}
 where $\Phi(\vec{x}, t)$ is a field.
 \end{defn}
 \noindent Notice that Eq.\eqref{eq:action-field-theory} treats space and time on an equal footing, since fields vary over both space and time. In contrast, for classical mechanics, we parametrized the dynamics of our particle with time only: $q(t)$ and $\dot{q}(t)$. 
+
+\subsection{Euler-Lagrange equation}
+Consider a classical path of a particle between fixed two points in time $t_1$ and $t_2$ that obeys the least action principal. We consider perturbing that path, and requiring that the difference in the action to first order vanishes. This yields the Euler-Lagrange equations.
+
+Mathematically, first expand the perturbed Lagrangian around the point $(q, \dot{q}, t)$ using a double Taylor expansion
+\begin{equation}
+\mathcal{L}(q + \epsilon, \dot{q} + \dot{\epsilon}(t), t) = \mathcal{L}(q, \dot{q}, t) + (q + \epsilon - q)\pderiv{\mathcal{L}}{t} + (\dot{q} + \dot{\epsilon} - \dot{q})\pderiv{\mathcal{L}}{\dot{q}} + ...
+\end{equation}
+where $q = q(t)$, $\dot{q} = \dot{q}(t)$, $\epsilon = \epsilon(t)$. By demanding $\delta S = 0$, we have
+\begin{equation}
+\delta S = \left[ \int_{t_1}^{t_2} \mathcal{L}(q, \dot{q}, t) \d{t} \right]- \left[ \int_{t_1}^{t_2} \mathcal{L}(q + \epsilon, \dot{q} + \dot{\epsilon}, t) \d{t} \right] = 0
+\end{equation}
+So, substituting the first-order Taylor expansion, we have
+\begin{equation}
+\int_{t_1}^{t_2}\left( \epsilon \pderiv{\mathcal{L}}{q} + \dot{\epsilon} \pderiv{\mathcal{L}}{\dot{q}} \right) \d{t} = 0
+\end{equation}
+We wish to factorize out $\epsilon(t)$ because it is an arbitrary perturbation. Using integration by parts on the term involving $\dot{\epsilon}$
+\begin{equation}
+\int \dot{\epsilon} \pderiv{\mathcal{L}}{\dot{q}} = \cancel{\left.\pderiv{\mathcal{L}}{\dot{q}}\epsilon\right|_{t_1}^{t_2}} - \int \deriv{}{t}\left( \pderiv{\mathcal{L}}{\dot{q}} \right) \epsilon \d{t}
+\end{equation}
+where the first term cancels due to the assumption of fixed boundary conditions, so $\epsilon(t_1) = \epsilon(t_2) = 0$. We thus arrive at
+\begin{equation}
+\int_{t_1}^{t_2} \epsilon(t) \left[ \pderiv{\mathcal{L}}{q} - \deriv{}{t}\left( \pderiv{\mathcal{L}}{\dot{q}} \right) \right] = 0
+\end{equation}
+and therefore we arrive at the famous Euler-Lagrange equation
+\begin{equation}
+\pderiv{\mathcal{L}(q, \dot{q}, t)}{q} - \deriv{}{t}\left( \pderiv{\mathcal{L}(q, \dot{q}, t)}{\dot{q}} \right) = 0.
+\end{equation}
+For (classical) field theory, we follow similar steps to obtain 
+\begin{equation}
+\pderiv{\mathscr{L}}{\Phi} - \partial_\mu \left( \pderiv{\mathscr{L}}{(\partial_\mu \Phi)} \right) = 0.
+\end{equation}
 
 \newpage
 \bibliography{physics-from-symmetry.bib} 
