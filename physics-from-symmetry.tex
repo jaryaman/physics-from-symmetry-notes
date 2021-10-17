@@ -1453,24 +1453,50 @@ where $q = q(t)$, $\dot{q} = \dot{q}(t)$, $\epsilon = \epsilon(t)$. By demanding
 \end{equation}
 So, substituting the first-order Taylor expansion, we have
 \begin{equation}
-\int_{t_1}^{t_2}\left( \epsilon \pderiv{\mathcal{L}}{q} + \dot{\epsilon} \pderiv{\mathcal{L}}{\dot{q}} \right) \d{t} = 0
+\int_{t_1}^{t_2}\left( \epsilon \pderiv{\mathcal{L}}{q} + \dot{\epsilon} \pderiv{\mathcal{L}}{\dot{q}} \right) \d{t} = 0.
 \end{equation}
 We wish to factorize out $\epsilon(t)$ because it is an arbitrary perturbation. Using integration by parts on the term involving $\dot{\epsilon}$
 \begin{equation}
-\int \dot{\epsilon} \pderiv{\mathcal{L}}{\dot{q}} = \cancel{\left.\pderiv{\mathcal{L}}{\dot{q}}\epsilon\right|_{t_1}^{t_2}} - \int \deriv{}{t}\left( \pderiv{\mathcal{L}}{\dot{q}} \right) \epsilon \d{t}
+\int \dot{\epsilon} \pderiv{\mathcal{L}}{\dot{q}} \d{t} = \cancel{\left.\pderiv{\mathcal{L}}{\dot{q}}\epsilon\right|_{t_1}^{t_2}} - \int \deriv{}{t}\left( \pderiv{\mathcal{L}}{\dot{q}} \right) \epsilon \d{t}
 \end{equation}
 where the first term cancels due to the assumption of fixed boundary conditions, so $\epsilon(t_1) = \epsilon(t_2) = 0$. We thus arrive at
 \begin{equation}
-\int_{t_1}^{t_2} \epsilon(t) \left[ \pderiv{\mathcal{L}}{q} - \deriv{}{t}\left( \pderiv{\mathcal{L}}{\dot{q}} \right) \right] = 0
+\int_{t_1}^{t_2} \epsilon(t) \left[ \pderiv{\mathcal{L}}{q} - \deriv{}{t}\left( \pderiv{\mathcal{L}}{\dot{q}} \right) \right] \d{t} = 0
 \end{equation}
 and therefore we arrive at the famous Euler-Lagrange equation
 \begin{equation}
-\pderiv{\mathcal{L}(q, \dot{q}, t)}{q} - \deriv{}{t}\left( \pderiv{\mathcal{L}(q, \dot{q}, t)}{\dot{q}} \right) = 0.
+\pderiv{\mathcal{L}(q, \dot{q}, t)}{q} - \deriv{}{t}\left( \pderiv{\mathcal{L}(q, \dot{q}, t)}{\dot{q}} \right) = 0. \label{eq:euler-lagrange-classical-mech}
 \end{equation}
 For (classical) field theory, we follow similar steps to obtain 
 \begin{equation}
 \pderiv{\mathscr{L}}{\Phi} - \partial_\mu \left( \pderiv{\mathscr{L}}{(\partial_\mu \Phi)} \right) = 0.
 \end{equation}
+
+\subsection{Noether's theorem}
+Noether's theorem shows that each symmetry of the Lagrangian corresponds to a conserved quantity. This is one of the most beautiful insights in the history of science.
+
+In order for dynamics to be invariant, the action must be invariant under a transformation of the Lagrangian. Consider some function $G(q)$ \textbf{[TODO: Or is it $G(q, \dot{q})$? Or $G(q, \dot{q}, t)$? Assuming he means what he says, $G(q)$]}. It turns out we can always add the total time derivative of a function to the Lagrangian
+\begin{equation}
+\mathcal{L} \rightarrow \mathcal{L} + \deriv{G}{t}
+\end{equation}
+because
+\begin{equation}
+\delta S \rightarrow \delta S + \int_{t_1}^{t_2} \d{t} \deriv{}{t} \delta G = \delta S + \cancel{\left. \pderiv{G}{q} \delta q \right|_{t_1}^{t_2}}
+\end{equation}
+due to the vanishing variation $\delta q$ at the boundaries.
+
+Expanding $\delta \mathcal{L}$, and using the Euler-Lagrange equation Eq.\eqref{eq:euler-lagrange-classical-mech}, and rewriting with the product rule, yields
+\begin{align}
+J &= \pderiv{\mathcal{L}}{\dot{q}} \delta q + G \\
+\deriv{}{t} J &= 0
+\end{align}
+And hence $J = \text{const}$, meaning that $J$ is \textbf{conserved with time}.
+
+For example, for the Lagrangian $\mathcal{L} = m \dot{q}^2/2$, the Lagrangian is invariant under spatial translation $q \rightarrow q + a$. The corresponding conserved quantity is 
+\begin{equation*}
+J_\text{trans} = \pderiv{\mathcal{L}}{\dot{q}} a = m \dot{q} a.
+\end{equation*}
+$\deriv{}{t}J = 0$ holds for arbitrary $a$, and therefore momentum is conserved because the Lagrangian is invariant under spatial translations.
 
 \newpage
 \bibliography{physics-from-symmetry.bib} 
